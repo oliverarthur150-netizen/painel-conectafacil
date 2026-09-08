@@ -16,6 +16,12 @@ const [sessao, setSessao] = useState(null)
 const [emailAdmin, setEmailAdmin] = useState("")
 const [senhaAdmin, setSenhaAdmin] = useState("")
 const [erroLogin, setErroLogin] = useState("")
+const [novoNome, setNovoNome] = useState("")
+const [novoWhatsapp, setNovoWhatsapp] = useState("")
+const [novoPlano, setNovoPlano] = useState("")
+const [novaDataAtivacao, setNovaDataAtivacao] = useState("")
+const [novoVencimento, setNovoVencimento] = useState("")
+const [novoStatus, setNovoStatus] = useState("ativo")
 useEffect(() => {
   supabase.auth.getSession().then(({ data }) => {
     setSessao(data.session)
@@ -160,6 +166,52 @@ async function excluirCliente(id) {
   setClientes((listaAtual) =>
     listaAtual.filter((cliente) => cliente.id !== id)
   )
+}
+async function salvarCliente() {
+  if (
+    !novoNome.trim() ||
+    !novoWhatsapp.trim() ||
+    !novoPlano ||
+    !novaDataAtivacao ||
+    !novoVencimento
+  ) {
+    alert("Preencha todos os campos do cliente.")
+    return
+  }
+
+  const { data, error } = await supabase
+    .from("dasorte_clientes")
+    .insert([
+      {
+        nome: novoNome.trim(),
+        whatsapp: novoWhatsapp.trim(),
+        plano: novoPlano,
+        data_ativacao: novaDataAtivacao,
+        vencimento: novoVencimento,
+        status: novoStatus,
+      },
+    ])
+    .select()
+    .single()
+
+  if (error) {
+    console.error("Erro ao cadastrar cliente:", error)
+    alert("Não foi possível cadastrar o cliente.")
+    return
+  }
+
+  setClientes((listaAtual) => [data, ...listaAtual])
+
+  setNovoNome("")
+  setNovoWhatsapp("")
+  setNovoPlano("")
+  setNovaDataAtivacao("")
+  setNovoVencimento("")
+  setNovoStatus("ativo")
+
+  setMostrarFormulario(false)
+
+  alert("Cliente cadastrado com sucesso!")
 }
 if (!sessao) {
   return (
@@ -317,49 +369,66 @@ if (!sessao) {
         <label>
           Nome do cliente
           <input
-            type="text"
-            placeholder="Ex.: João da Silva"
-          />
+  type="text"
+  placeholder="Ex.: João da Silva"
+  value={novoNome}
+  onChange={(e) => setNovoNome(e.target.value)}
+/>
         </label>
 
         <label>
           WhatsApp
           <input
-            type="text"
-            placeholder="(83) 99999-9999"
-          />
+  type="text"
+  placeholder="(83) 99999-9999"
+  value={novoWhatsapp}
+  onChange={(e) => setNovoWhatsapp(e.target.value)}
+/>
         </label>
 
         <label>
           Plano
-          <select defaultValue="">
-            <option value="" disabled>
-              Escolha um plano
-            </option>
-            <option value="mensal">Mensal</option>
-            <option value="trimestral">Trimestral</option>
-            <option value="semestral">Semestral</option>
-            <option value="anual">Anual</option>
-          </select>
+          <select
+  value={novoPlano}
+  onChange={(e) => setNovoPlano(e.target.value)}
+>
+  <option value="" disabled>
+    Escolha um plano
+  </option>
+  <option value="mensal">Mensal</option>
+  <option value="trimestral">Trimestral</option>
+  <option value="semestral">Semestral</option>
+  <option value="anual">Anual</option>
+</select>
         </label>
 
+      <label>
+  Data de ativação
+  <input
+    type="date"
+    value={novaDataAtivacao}
+    onChange={(e) => setNovaDataAtivacao(e.target.value)}
+  />
+</label>
         <label>
-          Data de ativação
-          <input type="date" />
-        </label>
+  Vencimento
+  <input
+    type="date"
+    value={novoVencimento}
+    onChange={(e) => setNovoVencimento(e.target.value)}
+  />
+</label>
 
         <label>
-          Vencimento
-          <input type="date" />
-        </label>
-
-        <label>
-          Status
-          <select defaultValue="ativo">
-            <option value="ativo">Ativo</option>
-            <option value="bloqueado">Bloqueado</option>
-          </select>
-        </label>
+  Status
+  <select
+    value={novoStatus}
+    onChange={(e) => setNovoStatus(e.target.value)}
+  >
+    <option value="ativo">Ativo</option>
+    <option value="bloqueado">Bloqueado</option>
+  </select>
+</label>
       </div>
 
       <div className="dasorte-modal-acoes">
@@ -371,9 +440,12 @@ if (!sessao) {
           Cancelar
         </button>
 
-        <button type="button">
-          Salvar cliente
-        </button>
+        <button
+  type="button"
+  onClick={salvarCliente}
+>
+  Salvar cliente
+</button>
       </div>
     </div>
   </div>
