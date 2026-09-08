@@ -1,0 +1,1372 @@
+/* =========================================================
+   DASHBOARD V2 — CONECTAFÁCIL CLOUD
+========================================================= */
+
+.cf-dashboard-v2 {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+
+  width: 100%;
+  padding-bottom: 40px;
+
+  animation: cfDashboardEntrada 0.4s ease;
+}
+
+@keyframes cfDashboardEntrada {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.cf-dashboard-hero {
+  position: relative;
+  isolation: isolate;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 30px;
+
+  min-height: 245px;
+  padding: 36px 38px;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(79, 192, 255, 0.2);
+  border-radius: 28px;
+
+  background:
+    radial-gradient(
+      circle at 10% 10%,
+      rgba(44, 174, 255, 0.22),
+      transparent 33%
+    ),
+    radial-gradient(
+      circle at 90% 90%,
+      rgba(116, 82, 255, 0.2),
+      transparent 34%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(10, 31, 55, 0.96),
+      rgba(7, 18, 34, 0.98)
+    );
+
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.cf-dashboard-hero::before {
+  position: absolute;
+  inset: 0;
+
+  z-index: -1;
+
+  background:
+    linear-gradient(
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px
+    );
+
+  background-size: 34px 34px;
+
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.8),
+    transparent
+  );
+
+  content: "";
+}
+
+.cf-dashboard-hero-conteudo {
+  position: relative;
+  z-index: 2;
+
+  max-width: 760px;
+}
+
+.cf-dashboard-hero-etiqueta {
+  display: block;
+
+  margin-bottom: 12px;
+
+  color: #4ed0ff;
+
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 2.2px;
+}
+
+.cf-dashboard-hero h1 {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 850;
+  letter-spacing: -1.5px;
+  line-height: 1.05;
+}
+
+.cf-dashboard-aceno {
+  display: inline-block;
+
+  margin-left: 10px;
+
+  font-size: 0.78em;
+
+  transform-origin: 70% 70%;
+
+  animation: cfDashboardAceno 2.5s ease-in-out infinite;
+}
+
+@keyframes cfDashboardAceno {
+  0%,
+  60%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  10% {
+    transform: rotate(16deg);
+  }
+
+  20% {
+    transform: rotate(-10deg);
+  }
+
+  30% {
+    transform: rotate(14deg);
+  }
+
+  40% {
+    transform: rotate(-6deg);
+  }
+
+  50% {
+    transform: rotate(8deg);
+  }
+}
+
+.cf-dashboard-hero-conteudo > p {
+  max-width: 650px;
+
+  margin: 17px 0 0;
+
+  color: #91a7c5;
+
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.cf-dashboard-hero-acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+
+  margin-top: 26px;
+}
+
+.cf-dashboard-botao-principal,
+.cf-dashboard-botao-secundario {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  min-height: 46px;
+  padding: 0 18px;
+
+  border-radius: 14px;
+
+  color: #ffffff;
+
+  font-size: 12px;
+  font-weight: 800;
+
+  transition:
+    transform 0.22s ease,
+    border-color 0.22s ease,
+    background 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+.cf-dashboard-botao-principal {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+
+  background:
+    linear-gradient(
+      135deg,
+      #27a9ff,
+      #765cff
+    );
+
+  box-shadow:
+    0 15px 32px rgba(40, 169, 255, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.cf-dashboard-botao-secundario {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.cf-dashboard-botao-principal:hover,
+.cf-dashboard-botao-secundario:hover {
+  transform: translateY(-3px);
+}
+
+.cf-dashboard-botao-principal:hover {
+  box-shadow:
+    0 20px 40px rgba(40, 169, 255, 0.37),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.cf-dashboard-botao-secundario:hover {
+  border-color: rgba(74, 202, 255, 0.3);
+
+  background: rgba(40, 169, 255, 0.1);
+}
+
+.cf-dashboard-operacao {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  min-width: 280px;
+  padding: 20px;
+
+  border: 1px solid rgba(80, 225, 167, 0.2);
+  border-radius: 20px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(8, 31, 40, 0.92),
+      rgba(7, 20, 32, 0.96)
+    );
+
+  box-shadow:
+    0 20px 45px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.cf-dashboard-operacao-icone {
+  display: grid;
+  place-items: center;
+
+  width: 52px;
+  height: 52px;
+
+  border-radius: 16px;
+
+  color: #43e5a2;
+
+  background: rgba(52, 231, 161, 0.1);
+
+  box-shadow: inset 0 0 20px rgba(52, 231, 161, 0.07);
+}
+
+.cf-dashboard-operacao > div:last-child {
+  min-width: 0;
+}
+
+.cf-dashboard-operacao span {
+  color: #5c7e8b;
+
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 1.3px;
+}
+
+.cf-dashboard-operacao strong {
+  display: block;
+
+  margin-top: 5px;
+
+  color: #ffffff;
+
+  font-size: 14px;
+}
+
+.cf-dashboard-operacao p {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  margin: 8px 0 0;
+
+  color: #6ecfa8;
+
+  font-size: 10px;
+}
+
+.cf-dashboard-operacao p i,
+.cf-dashboard-rodape-status > span i {
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  background: #36e69b;
+
+  box-shadow: 0 0 12px rgba(54, 230, 155, 0.8);
+}
+
+.cf-dashboard-hero-brilho {
+  position: absolute;
+
+  z-index: -1;
+
+  border-radius: 50%;
+
+  filter: blur(12px);
+
+  pointer-events: none;
+}
+
+.cf-dashboard-hero-brilho.um {
+  top: -150px;
+  right: 18%;
+
+  width: 300px;
+  height: 300px;
+
+  background: rgba(40, 169, 255, 0.11);
+}
+
+.cf-dashboard-hero-brilho.dois {
+  right: -90px;
+  bottom: -170px;
+
+  width: 330px;
+  height: 330px;
+
+  background: rgba(118, 92, 255, 0.13);
+}
+
+/* =========================================================
+   CARDS DE RESUMO
+========================================================= */
+
+.cf-dashboard-resumo {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.cf-dashboard-card-resumo {
+  position: relative;
+  isolation: isolate;
+
+  min-height: 195px;
+  padding: 20px;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 22px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(14, 29, 50, 0.9),
+      rgba(7, 16, 30, 0.98)
+    );
+
+  box-shadow:
+    0 22px 50px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.cf-dashboard-card-resumo:hover {
+  transform: translateY(-5px);
+
+  box-shadow:
+    0 28px 65px rgba(0, 0, 0, 0.36),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+
+.cf-dashboard-card-resumo.azul:hover {
+  border-color: rgba(49, 188, 255, 0.3);
+}
+
+.cf-dashboard-card-resumo.roxo:hover {
+  border-color: rgba(145, 112, 255, 0.3);
+}
+
+.cf-dashboard-card-resumo.laranja:hover {
+  border-color: rgba(255, 178, 91, 0.3);
+}
+
+.cf-dashboard-card-resumo.verde:hover {
+  border-color: rgba(58, 228, 155, 0.3);
+}
+
+.cf-dashboard-card-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cf-dashboard-card-icone {
+  display: grid;
+  place-items: center;
+
+  width: 46px;
+  height: 46px;
+
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
+}
+
+.cf-dashboard-card-resumo.azul .cf-dashboard-card-icone {
+  color: #48c7ff;
+
+  background: rgba(40, 169, 255, 0.12);
+}
+
+.cf-dashboard-card-resumo.roxo .cf-dashboard-card-icone {
+  color: #ad93ff;
+
+  background: rgba(118, 92, 255, 0.13);
+}
+
+.cf-dashboard-card-resumo.laranja .cf-dashboard-card-icone {
+  color: #ffc071;
+
+  background: rgba(255, 180, 92, 0.12);
+}
+
+.cf-dashboard-card-resumo.verde .cf-dashboard-card-icone {
+  color: #56e9aa;
+
+  background: rgba(50, 228, 150, 0.11);
+}
+
+.cf-dashboard-card-topo button {
+  display: grid;
+  place-items: center;
+
+  width: 35px;
+  height: 35px;
+  padding: 0;
+
+  border: none;
+  border-radius: 11px;
+
+  color: #526985;
+
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.cf-dashboard-card-topo button:hover {
+  color: #ffffff;
+
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.cf-dashboard-card-valor {
+  margin-top: 25px;
+}
+
+.cf-dashboard-card-valor strong {
+  display: block;
+
+  color: #ffffff;
+
+  font-size: clamp(24px, 2.4vw, 34px);
+  line-height: 1;
+}
+
+.cf-dashboard-card-valor span {
+  display: block;
+
+  margin-top: 9px;
+
+  color: #879bb7;
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.cf-dashboard-card-rodape {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+
+  margin-top: 23px;
+}
+
+.cf-dashboard-card-rodape > span {
+  color: #617895;
+
+  font-size: 10px;
+}
+
+.cf-dashboard-card-rodape small {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  padding: 5px 8px;
+
+  border-radius: 999px;
+
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.cf-dashboard-card-resumo.azul small {
+  color: #57caff;
+
+  background: rgba(40, 169, 255, 0.09);
+}
+
+.cf-dashboard-card-resumo.roxo small {
+  color: #b6a0ff;
+
+  background: rgba(118, 92, 255, 0.1);
+}
+
+.cf-dashboard-card-resumo.laranja small {
+  color: #ffc477;
+
+  background: rgba(255, 180, 92, 0.1);
+}
+
+.cf-dashboard-card-resumo.verde small {
+  color: #5ce7ad;
+
+  background: rgba(50, 228, 150, 0.09);
+}
+
+.cf-dashboard-card-luz {
+  position: absolute;
+  right: -75px;
+  bottom: -105px;
+
+  z-index: -1;
+
+  width: 210px;
+  height: 210px;
+
+  border-radius: 50%;
+
+  filter: blur(9px);
+}
+
+.cf-dashboard-card-resumo.azul .cf-dashboard-card-luz {
+  background: rgba(40, 169, 255, 0.15);
+}
+
+.cf-dashboard-card-resumo.roxo .cf-dashboard-card-luz {
+  background: rgba(118, 92, 255, 0.17);
+}
+
+.cf-dashboard-card-resumo.laranja .cf-dashboard-card-luz {
+  background: rgba(255, 180, 92, 0.13);
+}
+
+.cf-dashboard-card-resumo.verde .cf-dashboard-card-luz {
+  background: rgba(50, 228, 150, 0.12);
+}
+
+/* =========================================================
+   PAINÉIS
+========================================================= */
+
+.cf-dashboard-grid-principal {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(350px, 0.85fr);
+  gap: 18px;
+}
+
+.cf-dashboard-grid-secundario {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.cf-dashboard-painel {
+  position: relative;
+
+  padding: 24px;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(255, 255, 255, 0.075);
+  border-radius: 23px;
+
+  background:
+    radial-gradient(
+      circle at 0% 0%,
+      rgba(40, 169, 255, 0.07),
+      transparent 30%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(12, 26, 45, 0.9),
+      rgba(7, 16, 29, 0.97)
+    );
+
+  box-shadow:
+    0 24px 55px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.045);
+}
+
+.cf-dashboard-painel-topo {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.cf-dashboard-painel-etiqueta {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #4bc9ff;
+
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 1.7px;
+}
+
+.cf-dashboard-painel-topo h2 {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: 20px;
+}
+
+.cf-dashboard-painel-topo p {
+  margin: 7px 0 0;
+
+  color: #7187a3;
+
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   RECEITA E GRÁFICO
+========================================================= */
+
+.cf-dashboard-receita-total {
+  min-width: 145px;
+
+  text-align: right;
+}
+
+.cf-dashboard-receita-total > span {
+  display: block;
+
+  color: #627a98;
+
+  font-size: 9px;
+}
+
+.cf-dashboard-receita-total strong {
+  display: block;
+
+  margin-top: 5px;
+
+  color: #ffffff;
+
+  font-size: 18px;
+}
+
+.cf-dashboard-receita-total small {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+
+  margin-top: 7px;
+  padding: 5px 8px;
+
+  border-radius: 999px;
+
+  color: #54e6a7;
+
+  font-size: 9px;
+  font-weight: 800;
+
+  background: rgba(50, 228, 150, 0.09);
+}
+
+.cf-dashboard-grafico {
+  position: relative;
+
+  height: 265px;
+  margin-top: 30px;
+}
+
+.cf-dashboard-grafico-linhas {
+  position: absolute;
+  inset: 0 0 35px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cf-dashboard-grafico-linhas span {
+  display: block;
+
+  width: 100%;
+
+  border-top: 1px dashed rgba(255, 255, 255, 0.06);
+}
+
+.cf-dashboard-grafico-colunas {
+  position: relative;
+  z-index: 2;
+
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 15px;
+
+  height: 100%;
+}
+
+.cf-dashboard-grafico-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cf-dashboard-grafico-barra-area {
+  display: flex;
+  align-items: flex-end;
+
+  width: 100%;
+  max-width: 46px;
+  height: calc(100% - 35px);
+}
+
+.cf-dashboard-grafico-barra {
+  position: relative;
+
+  width: 100%;
+  min-height: 20px;
+
+  border-radius: 12px 12px 5px 5px;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(40, 169, 255, 0.55),
+      #48cbff
+    );
+
+  box-shadow:
+    0 0 20px rgba(40, 169, 255, 0.17),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+
+  animation: cfDashboardBarra 0.8s ease both;
+}
+
+@keyframes cfDashboardBarra {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+}
+
+.cf-dashboard-grafico-barra i {
+  position: absolute;
+  top: -24px;
+  left: 50%;
+
+  opacity: 0;
+
+  padding: 4px 6px;
+
+  border-radius: 7px;
+
+  color: #ffffff;
+
+  font-size: 8px;
+  font-style: normal;
+
+  background: #142941;
+
+  transform: translateX(-50%);
+
+  transition: opacity 0.2s ease;
+}
+
+.cf-dashboard-grafico-barra:hover i {
+  opacity: 1;
+}
+
+.cf-dashboard-grafico-item > small {
+  margin-top: 12px;
+
+  color: #657c98;
+
+  font-size: 10px;
+}
+
+/* =========================================================
+   STATUS DAS TELAS
+========================================================= */
+
+.cf-dashboard-status-geral {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 7px 10px;
+
+  border-radius: 999px;
+
+  color: #5ce8ac;
+
+  font-size: 9px;
+  font-weight: 800;
+
+  background: rgba(50, 228, 150, 0.09);
+}
+
+.cf-dashboard-telas-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  margin-top: 23px;
+}
+
+.cf-dashboard-tv {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 11px;
+
+  padding: 12px;
+
+  border: 1px solid rgba(255, 255, 255, 0.055);
+  border-radius: 15px;
+
+  background: rgba(255, 255, 255, 0.026);
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.cf-dashboard-tv:hover {
+  transform: translateX(3px);
+
+  border-color: rgba(255, 255, 255, 0.1);
+
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.cf-dashboard-tv-icone {
+  display: grid;
+  place-items: center;
+
+  width: 40px;
+  height: 40px;
+
+  border-radius: 12px;
+}
+
+.cf-dashboard-tv.online .cf-dashboard-tv-icone {
+  color: #4ee5a5;
+
+  background: rgba(50, 228, 150, 0.09);
+}
+
+.cf-dashboard-tv.offline .cf-dashboard-tv-icone {
+  color: #ff7182;
+
+  background: rgba(255, 100, 120, 0.1);
+}
+
+.cf-dashboard-tv-info strong,
+.cf-dashboard-tv-info span {
+  display: block;
+}
+
+.cf-dashboard-tv-info strong {
+  color: #eaf3ff;
+
+  font-size: 11px;
+}
+
+.cf-dashboard-tv-info span {
+  margin-top: 4px;
+
+  color: #657c99;
+
+  font-size: 9px;
+}
+
+.cf-dashboard-tv-status {
+  text-align: right;
+}
+
+.cf-dashboard-tv-status strong {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+
+  font-size: 9px;
+}
+
+.cf-dashboard-tv-status strong i {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+}
+
+.cf-dashboard-tv.online .cf-dashboard-tv-status strong {
+  color: #4ee5a5;
+}
+
+.cf-dashboard-tv.online .cf-dashboard-tv-status strong i {
+  background: #39e49a;
+
+  box-shadow: 0 0 9px rgba(57, 228, 154, 0.65);
+}
+
+.cf-dashboard-tv.offline .cf-dashboard-tv-status strong {
+  color: #ff7182;
+}
+
+.cf-dashboard-tv.offline .cf-dashboard-tv-status strong i {
+  background: #ff6478;
+
+  box-shadow: 0 0 9px rgba(255, 100, 120, 0.65);
+}
+
+.cf-dashboard-tv-status > span {
+  display: block;
+
+  margin-top: 5px;
+
+  color: #596f8b;
+
+  font-size: 8px;
+}
+
+.cf-dashboard-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+
+  width: 100%;
+  min-height: 40px;
+  margin-top: 15px;
+
+  border: 1px solid rgba(40, 169, 255, 0.12);
+  border-radius: 12px;
+
+  color: #52caff;
+
+  font-size: 10px;
+  font-weight: 800;
+
+  background: rgba(40, 169, 255, 0.05);
+}
+
+/* =========================================================
+   ATIVIDADES
+========================================================= */
+
+.cf-dashboard-atividades {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  margin-top: 22px;
+}
+
+.cf-dashboard-atividade {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 11px;
+
+  padding: 11px 0;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.cf-dashboard-atividade:last-child {
+  border-bottom: none;
+}
+
+.cf-dashboard-atividade-icone {
+  display: grid;
+  place-items: center;
+
+  width: 41px;
+  height: 41px;
+
+  border-radius: 12px;
+}
+
+.cf-dashboard-atividade-icone.campanha {
+  color: #ffbd6a;
+
+  background: rgba(255, 180, 92, 0.1);
+}
+
+.cf-dashboard-atividade-icone.tela {
+  color: #4bc8ff;
+
+  background: rgba(40, 169, 255, 0.1);
+}
+
+.cf-dashboard-atividade-icone.cliente {
+  color: #ae95ff;
+
+  background: rgba(118, 92, 255, 0.11);
+}
+
+.cf-dashboard-atividade-icone.programacao {
+  color: #55e5aa;
+
+  background: rgba(50, 228, 150, 0.09);
+}
+
+.cf-dashboard-atividade > div strong,
+.cf-dashboard-atividade > div span {
+  display: block;
+}
+
+.cf-dashboard-atividade > div strong {
+  color: #eaf4ff;
+
+  font-size: 11px;
+}
+
+.cf-dashboard-atividade > div span {
+  margin-top: 4px;
+
+  color: #667e9b;
+
+  font-size: 9px;
+}
+
+.cf-dashboard-atividade > small {
+  color: #566d89;
+
+  font-size: 8px;
+}
+
+/* =========================================================
+   ALERTAS
+========================================================= */
+
+.cf-dashboard-alertas-total {
+  display: grid;
+  place-items: center;
+
+  min-width: 35px;
+  height: 35px;
+  padding: 0 8px;
+
+  border-radius: 11px;
+
+  color: #ffffff;
+
+  font-size: 11px;
+  font-weight: 900;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff6478,
+      #ff8a52
+    );
+
+  box-shadow: 0 10px 24px rgba(255, 100, 120, 0.22);
+}
+
+.cf-dashboard-alertas {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  margin-top: 22px;
+}
+
+.cf-dashboard-alerta {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) 32px;
+  align-items: center;
+  gap: 11px;
+
+  padding: 12px;
+
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.cf-dashboard-alerta-icone {
+  display: grid;
+  place-items: center;
+
+  width: 41px;
+  height: 41px;
+
+  border-radius: 12px;
+}
+
+.cf-dashboard-alerta.erro .cf-dashboard-alerta-icone {
+  color: #ff7485;
+
+  background: rgba(255, 100, 120, 0.1);
+}
+
+.cf-dashboard-alerta.aviso .cf-dashboard-alerta-icone {
+  color: #ffc06f;
+
+  background: rgba(255, 180, 92, 0.1);
+}
+
+.cf-dashboard-alerta.info .cf-dashboard-alerta-icone {
+  color: #57e6aa;
+
+  background: rgba(50, 228, 150, 0.09);
+}
+
+.cf-dashboard-alerta strong {
+  display: block;
+
+  color: #eaf4ff;
+
+  font-size: 11px;
+}
+
+.cf-dashboard-alerta p {
+  margin: 4px 0 0;
+
+  color: #687f9b;
+
+  font-size: 9px;
+  line-height: 1.45;
+}
+
+.cf-dashboard-alerta > button {
+  display: grid;
+  place-items: center;
+
+  width: 31px;
+  height: 31px;
+  padding: 0;
+
+  border: none;
+  border-radius: 10px;
+
+  color: #6d829e;
+
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* =========================================================
+   RODAPÉ DE STATUS
+========================================================= */
+
+.cf-dashboard-rodape-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  padding: 16px 19px;
+
+  border: 1px solid rgba(65, 210, 255, 0.11);
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      100deg,
+      rgba(40, 169, 255, 0.07),
+      rgba(118, 92, 255, 0.05)
+    );
+}
+
+.cf-dashboard-rodape-status > div {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cf-dashboard-rodape-icone {
+  display: grid;
+  place-items: center;
+
+  width: 42px;
+  height: 42px;
+
+  border-radius: 12px;
+
+  color: #58cfff;
+
+  background: rgba(40, 169, 255, 0.1);
+}
+
+.cf-dashboard-rodape-status strong {
+  display: block;
+
+  color: #eaf4ff;
+
+  font-size: 11px;
+}
+
+.cf-dashboard-rodape-status p {
+  margin: 4px 0 0;
+
+  color: #657d99;
+
+  font-size: 9px;
+}
+
+.cf-dashboard-rodape-status > span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  color: #64dca9;
+
+  font-size: 9px;
+}
+
+/* =========================================================
+   RESPONSIVIDADE
+========================================================= */
+
+@media (max-width: 1250px) {
+  .cf-dashboard-resumo {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cf-dashboard-grid-principal {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .cf-dashboard-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .cf-dashboard-operacao {
+    min-width: 0;
+  }
+
+  .cf-dashboard-grid-secundario {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 650px) {
+  .cf-dashboard-hero {
+    padding: 26px 22px;
+  }
+
+  .cf-dashboard-resumo {
+    grid-template-columns: 1fr;
+  }
+
+  .cf-dashboard-painel {
+    padding: 19px;
+  }
+
+  .cf-dashboard-painel-topo {
+    flex-direction: column;
+  }
+
+  .cf-dashboard-receita-total {
+    text-align: left;
+  }
+
+  .cf-dashboard-grafico-colunas {
+    gap: 8px;
+  }
+
+  .cf-dashboard-tv {
+    grid-template-columns: 40px minmax(0, 1fr);
+  }
+
+  .cf-dashboard-tv-status {
+    grid-column: 2;
+
+    text-align: left;
+  }
+
+  .cf-dashboard-tv-status strong {
+    justify-content: flex-start;
+  }
+
+  .cf-dashboard-rodape-status {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 430px) {
+  .cf-dashboard-hero-acoes {
+    flex-direction: column;
+  }
+
+  .cf-dashboard-botao-principal,
+  .cf-dashboard-botao-secundario {
+    width: 100%;
+  }
+
+  .cf-dashboard-card-rodape {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .cf-dashboard-atividade {
+    grid-template-columns: 40px minmax(0, 1fr);
+  }
+
+  .cf-dashboard-atividade > small {
+    grid-column: 2;
+  }
+}

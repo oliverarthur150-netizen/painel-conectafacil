@@ -1,0 +1,1383 @@
+/* =========================================================
+   CONECTAFÁCIL CLOUD — CENTRAL DE TELAS
+========================================================= */
+
+.cf-telas-page {
+  width: 100%;
+  min-width: 0;
+  padding-bottom: 40px;
+}
+
+/* =========================================================
+   RESUMO
+========================================================= */
+
+.cf-telas-resumo {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 15px;
+
+  margin-bottom: 20px;
+}
+
+.cf-telas-resumo-card {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  min-height: 120px;
+  padding: 20px;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 20px;
+
+  background:
+    radial-gradient(
+      circle at 0 0,
+      rgba(53, 184, 255, 0.08),
+      transparent 48%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(13, 28, 48, 0.96),
+      rgba(7, 16, 29, 0.99)
+    );
+
+  box-shadow:
+    0 18px 45px rgba(0, 0, 0, 0.23),
+    inset 0 1px 0 rgba(255, 255, 255, 0.045);
+}
+
+.cf-telas-resumo-icone {
+  display: grid;
+  place-items: center;
+
+  width: 49px;
+  height: 49px;
+  flex: 0 0 auto;
+
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 16px;
+}
+
+.cf-telas-resumo-card > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.cf-telas-resumo-card strong {
+  color: #ffffff;
+
+  font-size: 27px;
+  font-weight: 900;
+  letter-spacing: -1px;
+}
+
+.cf-telas-resumo-card span {
+  margin-top: 2px;
+
+  color: #dce9f8;
+
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.cf-telas-resumo-card small {
+  margin-top: 5px;
+
+  color: #637b98;
+
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.cf-telas-resumo-card.total
+  .cf-telas-resumo-icone {
+  color: #5ccaff;
+  background: rgba(53, 184, 255, 0.1);
+}
+
+.cf-telas-resumo-card.online
+  .cf-telas-resumo-icone {
+  color: #60e9ad;
+  background: rgba(64, 227, 156, 0.1);
+}
+
+.cf-telas-resumo-card.offline
+  .cf-telas-resumo-icone {
+  color: #ff7d8d;
+  background: rgba(255, 102, 122, 0.11);
+}
+
+.cf-telas-resumo-card.atualizando
+  .cf-telas-resumo-icone {
+  color: #b29fff;
+  background: rgba(118, 92, 255, 0.11);
+}
+
+.cf-telas-resumo-card.atualizando svg {
+  animation: cfTelasSpin 2.3s linear infinite;
+}
+
+.cf-telas-resumo-brilho {
+  position: absolute;
+  right: -35px;
+  bottom: -55px;
+
+  width: 130px;
+  height: 130px;
+
+  border-radius: 50%;
+
+  background: rgba(53, 184, 255, 0.06);
+  filter: blur(20px);
+}
+
+/* =========================================================
+   FILTROS
+========================================================= */
+
+.cf-telas-filtros-card {
+  margin-bottom: 19px;
+}
+
+.cf-telas-filtros {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  width: 100%;
+}
+
+.cf-telas-pesquisa {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  min-width: 260px;
+  height: 44px;
+  flex: 1;
+
+  padding: 0 13px;
+
+  border: 1px solid rgba(255, 255, 255, 0.075);
+  border-radius: 13px;
+
+  color: #5bcaff;
+
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.cf-telas-pesquisa:focus-within {
+  border-color: rgba(72, 199, 255, 0.32);
+
+  box-shadow: 0 0 0 3px rgba(53, 184, 255, 0.07);
+}
+
+.cf-telas-pesquisa input {
+  width: 100%;
+  min-width: 0;
+
+  border: 0;
+  outline: 0;
+
+  color: #f2f7ff;
+
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 650;
+
+  background: transparent;
+}
+
+.cf-telas-pesquisa input::placeholder {
+  color: #536a86;
+}
+
+.cf-telas-pesquisa button {
+  display: grid;
+  place-items: center;
+
+  width: 28px;
+  height: 28px;
+
+  border: 0;
+  border-radius: 8px;
+
+  color: #7187a1;
+
+  cursor: pointer;
+
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.cf-telas-filtro-status {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  height: 44px;
+  padding: 4px;
+
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 13px;
+
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.cf-telas-filtro-status button {
+  min-height: 34px;
+  padding: 0 11px;
+
+  border: 0;
+  border-radius: 9px;
+
+  color: #7188a3;
+
+  font-family: inherit;
+  font-size: 9px;
+  font-weight: 850;
+
+  cursor: pointer;
+
+  background: transparent;
+
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.cf-telas-filtro-status button:hover {
+  color: #dceaff;
+}
+
+.cf-telas-filtro-status button.ativo {
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(53, 184, 255, 0.22),
+      rgba(118, 92, 255, 0.18)
+    );
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 6px 16px rgba(0, 0, 0, 0.16);
+}
+
+.cf-telas-select {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  height: 44px;
+  padding: 0 12px;
+
+  border: 1px solid rgba(255, 255, 255, 0.075);
+  border-radius: 13px;
+
+  color: #55c9ff;
+
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.cf-telas-select select {
+  max-width: 155px;
+
+  border: 0;
+  outline: 0;
+
+  color: #a8bad0;
+
+  font-family: inherit;
+  font-size: 10px;
+  font-weight: 750;
+
+  cursor: pointer;
+
+  background: transparent;
+}
+
+.cf-telas-select option {
+  color: #eaf4ff;
+  background: #0b192a;
+}
+
+/* =========================================================
+   RESULTADOS
+========================================================= */
+
+.cf-telas-resultados-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+
+  margin: 0 2px 15px;
+}
+
+.cf-telas-resultados-topo > div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  color: #7188a4;
+
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.cf-telas-resultados-topo svg {
+  color: #51c9ff;
+}
+
+.cf-telas-resultados-topo strong {
+  color: #caddf2;
+}
+
+/* =========================================================
+   GRID E CARD
+========================================================= */
+
+.cf-telas-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    3,
+    minmax(0, 1fr)
+  );
+  gap: 18px;
+}
+
+.cf-tela-card {
+  min-width: 0;
+}
+
+.cf-tela-card-botao {
+  display: block;
+
+  width: 100%;
+  padding: 0;
+
+  border: 0;
+
+  color: inherit;
+  text-align: left;
+
+  cursor: pointer;
+
+  background: transparent;
+}
+
+.cf-tela-card-preview {
+  position: relative;
+
+  min-height: 217px;
+  padding: 15px 16px 13px;
+
+  overflow: hidden;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.065);
+
+  background:
+    radial-gradient(
+      circle at 50% 130%,
+      rgba(53, 184, 255, 0.17),
+      transparent 50%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(12, 26, 45, 0.98),
+      rgba(5, 14, 25, 0.99)
+    );
+}
+
+.cf-tela-card-offline .cf-tela-card-preview {
+  background:
+    radial-gradient(
+      circle at 50% 130%,
+      rgba(255, 102, 122, 0.13),
+      transparent 50%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(27, 20, 31, 0.98),
+      rgba(12, 12, 20, 0.99)
+    );
+}
+
+.cf-tela-card-atualizando
+  .cf-tela-card-preview {
+  background:
+    radial-gradient(
+      circle at 50% 130%,
+      rgba(118, 92, 255, 0.17),
+      transparent 50%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(18, 23, 48, 0.98),
+      rgba(9, 12, 27, 0.99)
+    );
+}
+
+.cf-tela-card-preview-topo {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cf-tela-card-menu {
+  display: grid;
+  place-items: center;
+
+  width: 31px;
+  height: 31px;
+
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 9px;
+
+  color: #6c829d;
+
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.cf-tela-monitor {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  width: 78%;
+  margin: 20px auto 0;
+}
+
+.cf-tela-monitor-tela {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  width: 100%;
+  min-height: 98px;
+  padding: 15px;
+
+  overflow: hidden;
+
+  border: 5px solid #18283a;
+  border-radius: 11px;
+
+  background:
+    radial-gradient(
+      circle at 100% 0,
+      rgba(118, 92, 255, 0.34),
+      transparent 38%
+    ),
+    linear-gradient(
+      135deg,
+      #12395b,
+      #10223b 52%,
+      #201b50
+    );
+
+  box-shadow:
+    0 21px 34px rgba(0, 0, 0, 0.34),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.055);
+}
+
+.cf-tela-card-offline .cf-tela-monitor-tela {
+  filter: grayscale(0.82);
+  opacity: 0.68;
+}
+
+.cf-tela-monitor-logo {
+  display: grid;
+  place-items: center;
+
+  width: 36px;
+  height: 36px;
+  flex: 0 0 auto;
+
+  border-radius: 11px;
+
+  color: #ffffff;
+
+  font-size: 11px;
+  font-weight: 950;
+
+  background:
+    linear-gradient(
+      135deg,
+      #37c6ff,
+      #785eff
+    );
+
+  box-shadow: 0 7px 20px rgba(46, 173, 255, 0.3);
+}
+
+.cf-tela-monitor-tela > div {
+  min-width: 0;
+  flex: 1;
+}
+
+.cf-tela-monitor-tela strong {
+  display: block;
+
+  overflow: hidden;
+
+  color: #ffffff;
+
+  font-size: 10px;
+  font-weight: 850;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cf-tela-monitor-tela small {
+  display: block;
+
+  margin-top: 4px;
+
+  color: #9cb3ce;
+
+  font-size: 8px;
+}
+
+.cf-tela-monitor-sinal {
+  display: grid;
+  place-items: center;
+
+  width: 32px;
+  height: 32px;
+  flex: 0 0 auto;
+
+  border-radius: 10px;
+}
+
+.cf-tela-monitor-sinal.online {
+  color: #62e9ae;
+  background: rgba(64, 227, 156, 0.12);
+}
+
+.cf-tela-monitor-sinal.offline {
+  color: #ff7e8f;
+  background: rgba(255, 102, 122, 0.13);
+}
+
+.cf-tela-monitor-sinal.atualizando {
+  color: #b5a4ff;
+  background: rgba(118, 92, 255, 0.14);
+}
+
+.cf-tela-monitor-sinal.atualizando svg {
+  animation: cfTelasSpin 1.7s linear infinite;
+}
+
+.cf-tela-monitor-base {
+  width: 43%;
+  height: 12px;
+
+  border-radius: 0 0 9px 9px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #26384b,
+      #142334
+    );
+
+  box-shadow: 0 11px 18px rgba(0, 0, 0, 0.25);
+}
+
+.cf-tela-card-local {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  margin-top: 17px;
+
+  color: #748ba6;
+
+  font-size: 9px;
+  font-weight: 750;
+}
+
+.cf-tela-card-local svg {
+  color: #4fc8ff;
+}
+
+.cf-tela-card-preview-luz {
+  position: absolute;
+  right: 25%;
+  bottom: -60px;
+
+  width: 50%;
+  height: 100px;
+
+  border-radius: 50%;
+
+  background: rgba(53, 184, 255, 0.17);
+  filter: blur(30px);
+}
+
+.cf-tela-card-conteudo {
+  padding: 18px;
+}
+
+.cf-tela-card-titulo {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 13px;
+}
+
+.cf-tela-card-titulo > div {
+  min-width: 0;
+}
+
+.cf-tela-card-titulo > div > span {
+  display: block;
+
+  color: #43c5ff;
+
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 1.1px;
+}
+
+.cf-tela-card-titulo h3 {
+  margin: 5px 0 0;
+
+  overflow: hidden;
+
+  color: #f3f8ff;
+
+  font-size: 15px;
+  font-weight: 850;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cf-tela-card-titulo p {
+  margin: 5px 0 0;
+
+  color: #667d98;
+
+  font-size: 9px;
+  font-weight: 650;
+}
+
+.cf-tela-card-informacoes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+
+  margin-top: 17px;
+}
+
+.cf-tela-card-informacoes > div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  min-width: 0;
+  padding: 10px;
+
+  border: 1px solid rgba(255, 255, 255, 0.055);
+  border-radius: 11px;
+
+  background: rgba(255, 255, 255, 0.026);
+}
+
+.cf-tela-card-informacoes svg {
+  flex: 0 0 auto;
+
+  color: #4fc8ff;
+}
+
+.cf-tela-card-informacoes span {
+  min-width: 0;
+}
+
+.cf-tela-card-informacoes small {
+  display: block;
+
+  color: #536b87;
+
+  font-size: 7px;
+  font-weight: 800;
+}
+
+.cf-tela-card-informacoes strong {
+  display: block;
+
+  margin-top: 3px;
+
+  overflow: hidden;
+
+  color: #b6c8dc;
+
+  font-size: 9px;
+  font-weight: 800;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cf-tela-card-rodape {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+
+  margin-top: 17px;
+  padding-top: 14px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.055);
+}
+
+.cf-tela-card-rodape span,
+.cf-tela-card-rodape strong {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  font-size: 8px;
+  font-weight: 800;
+}
+
+.cf-tela-card-rodape span {
+  color: #627995;
+}
+
+.cf-tela-card-rodape strong {
+  color: #53c9ff;
+}
+
+/* =========================================================
+   PAINEL LATERAL
+========================================================= */
+
+.cf-tela-detalhes-overlay {
+  position: fixed;
+  z-index: 3000;
+  inset: 0;
+
+  display: flex;
+  justify-content: flex-end;
+}
+
+.cf-tela-detalhes-fundo {
+  position: absolute;
+  inset: 0;
+
+  border: 0;
+
+  cursor: pointer;
+
+  background: rgba(2, 7, 13, 0.74);
+  backdrop-filter: blur(7px);
+
+  animation: cfTelasFade 0.25s ease;
+}
+
+.cf-tela-detalhes {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+
+  width: min(580px, 100%);
+  height: 100%;
+
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+
+  background:
+    radial-gradient(
+      circle at 100% 0,
+      rgba(53, 184, 255, 0.09),
+      transparent 30%
+    ),
+    linear-gradient(
+      180deg,
+      #0d1d31,
+      #07111e
+    );
+
+  box-shadow: -30px 0 70px rgba(0, 0, 0, 0.42);
+
+  animation: cfTelasSlide 0.32s ease;
+}
+
+.cf-tela-detalhes-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+
+  padding: 24px 25px 18px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.065);
+}
+
+.cf-tela-detalhes-etiqueta {
+  color: #4fc8ff;
+
+  font-size: 8px;
+  font-weight: 950;
+  letter-spacing: 1.4px;
+}
+
+.cf-tela-detalhes-header h2 {
+  margin: 6px 0 0;
+
+  color: #ffffff;
+
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: -0.6px;
+}
+
+.cf-tela-detalhes-header p {
+  margin: 6px 0 0;
+
+  color: #6e849e;
+
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.cf-tela-detalhes-fechar {
+  display: grid;
+  place-items: center;
+
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+
+  color: #8499b1;
+
+  cursor: pointer;
+
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.cf-tela-detalhes-fechar:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.075);
+}
+
+.cf-tela-detalhes-status {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  padding: 14px 25px 0;
+}
+
+.cf-tela-detalhes-mensagem {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  margin: 14px 25px 0;
+  padding: 12px 13px;
+
+  border: 1px solid rgba(64, 227, 156, 0.15);
+  border-radius: 12px;
+
+  color: #69eab4;
+
+  font-size: 10px;
+  font-weight: 750;
+
+  background: rgba(64, 227, 156, 0.08);
+}
+
+.cf-tela-detalhes-conteudo {
+  min-height: 0;
+  flex: 1;
+
+  padding: 20px 25px 30px;
+  overflow-y: auto;
+}
+
+.cf-tela-detalhes-conteudo::-webkit-scrollbar {
+  width: 7px;
+}
+
+.cf-tela-detalhes-conteudo::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.cf-tela-detalhes-bloco {
+  padding: 18px;
+
+  border: 1px solid rgba(255, 255, 255, 0.065);
+  border-radius: 17px;
+
+  background: rgba(255, 255, 255, 0.024);
+}
+
+.cf-tela-detalhes-bloco
+  + .cf-tela-detalhes-bloco {
+  margin-top: 13px;
+}
+
+.cf-tela-detalhes-bloco-titulo {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  margin-bottom: 15px;
+}
+
+.cf-tela-detalhes-bloco-titulo svg {
+  color: #4fc9ff;
+}
+
+.cf-tela-detalhes-bloco-titulo h3 {
+  margin: 0;
+
+  color: #eaf4ff;
+
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.cf-tela-detalhes-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.cf-tela-detalhe-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  min-width: 0;
+  padding: 11px;
+
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+
+  background: rgba(255, 255, 255, 0.022);
+}
+
+.cf-tela-detalhe-item-icone {
+  display: grid;
+  place-items: center;
+
+  width: 34px;
+  height: 34px;
+  flex: 0 0 auto;
+
+  border-radius: 10px;
+
+  color: #52c9ff;
+
+  background: rgba(53, 184, 255, 0.085);
+}
+
+.cf-tela-detalhe-item > div {
+  min-width: 0;
+}
+
+.cf-tela-detalhe-item small {
+  display: block;
+
+  color: #536c88;
+
+  font-size: 7px;
+  font-weight: 850;
+}
+
+.cf-tela-detalhe-item strong {
+  display: block;
+
+  margin-top: 3px;
+
+  overflow: hidden;
+
+  color: #b8c9dc;
+
+  font-size: 9px;
+  font-weight: 800;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cf-tela-detalhes-metricas {
+  display: grid;
+  gap: 12px;
+}
+
+.cf-telas-metrica-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+
+  margin-bottom: 7px;
+}
+
+.cf-telas-metrica-topo span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  color: #7389a3;
+
+  font-size: 8px;
+  font-weight: 850;
+}
+
+.cf-telas-metrica-topo svg {
+  color: #4fc9ff;
+}
+
+.cf-telas-metrica-topo strong {
+  color: #c7d7e9;
+
+  font-size: 9px;
+}
+
+.cf-telas-metrica-barra {
+  height: 7px;
+  overflow: hidden;
+
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.cf-telas-metrica-barra span {
+  display: block;
+
+  height: 100%;
+
+  border-radius: inherit;
+
+  background:
+    linear-gradient(
+      90deg,
+      #35b8ff,
+      #765cff
+    );
+
+  box-shadow: 0 0 13px rgba(53, 184, 255, 0.32);
+}
+
+.cf-telas-metrica.alerta
+  .cf-telas-metrica-barra
+  span {
+  background:
+    linear-gradient(
+      90deg,
+      #ffbd69,
+      #ff667a
+    );
+}
+
+.cf-tela-playlist {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cf-tela-playlist-icone {
+  display: grid;
+  place-items: center;
+
+  width: 48px;
+  height: 48px;
+  flex: 0 0 auto;
+
+  border-radius: 14px;
+
+  color: #b4a3ff;
+
+  background: rgba(118, 92, 255, 0.12);
+}
+
+.cf-tela-playlist > div {
+  min-width: 0;
+  flex: 1;
+}
+
+.cf-tela-playlist strong,
+.cf-tela-playlist span,
+.cf-tela-playlist small {
+  display: block;
+}
+
+.cf-tela-playlist strong {
+  color: #eaf4ff;
+
+  font-size: 10px;
+  font-weight: 850;
+}
+
+.cf-tela-playlist span {
+  margin-top: 4px;
+
+  color: #7e93ac;
+
+  font-size: 8px;
+}
+
+.cf-tela-playlist small {
+  margin-top: 4px;
+
+  color: #536a84;
+
+  font-size: 7px;
+}
+
+.cf-tela-playlist button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  border: 0;
+
+  color: #55caff;
+
+  font-family: inherit;
+  font-size: 8px;
+  font-weight: 850;
+
+  cursor: pointer;
+
+  background: transparent;
+}
+
+.cf-tela-sincronizacao {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.cf-tela-sincronizacao > div {
+  padding: 11px;
+
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 11px;
+
+  background: rgba(255, 255, 255, 0.022);
+}
+
+.cf-tela-sincronizacao small,
+.cf-tela-sincronizacao strong {
+  display: block;
+}
+
+.cf-tela-sincronizacao small {
+  color: #526a85;
+
+  font-size: 7px;
+  font-weight: 800;
+}
+
+.cf-tela-sincronizacao strong {
+  margin-top: 4px;
+
+  color: #b9cada;
+
+  font-size: 8px;
+  line-height: 1.45;
+}
+
+.cf-tela-observacoes {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+
+  margin-top: 13px;
+  padding: 14px;
+
+  border: 1px solid rgba(255, 189, 105, 0.14);
+  border-radius: 14px;
+
+  color: #ffc578;
+
+  background: rgba(255, 189, 105, 0.07);
+}
+
+.cf-tela-observacoes svg {
+  flex: 0 0 auto;
+}
+
+.cf-tela-observacoes strong {
+  color: #ffd092;
+
+  font-size: 9px;
+}
+
+.cf-tela-observacoes p {
+  margin: 5px 0 0;
+
+  color: #a48662;
+
+  font-size: 8px;
+  line-height: 1.55;
+}
+
+.cf-tela-detalhes-acoes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+
+  padding: 17px 25px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+
+  background: rgba(5, 13, 23, 0.94);
+}
+
+.cf-tela-detalhes-acoes
+  .cf-cloud-button:last-child {
+  grid-column: 1 / -1;
+}
+
+/* =========================================================
+   ANIMAÇÕES
+========================================================= */
+
+@keyframes cfTelasSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes cfTelasFade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes cfTelasSlide {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* =========================================================
+   RESPONSIVIDADE
+========================================================= */
+
+@media (max-width: 1250px) {
+  .cf-telas-grid {
+    grid-template-columns: repeat(
+      2,
+      minmax(0, 1fr)
+    );
+  }
+
+  .cf-telas-resumo {
+    grid-template-columns: repeat(
+      2,
+      minmax(0, 1fr)
+    );
+  }
+
+  .cf-telas-filtros {
+    flex-wrap: wrap;
+  }
+
+  .cf-telas-pesquisa {
+    flex-basis: 100%;
+  }
+}
+
+@media (max-width: 760px) {
+  .cf-telas-grid,
+  .cf-telas-resumo {
+    grid-template-columns: 1fr;
+  }
+
+  .cf-telas-filtro-status {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .cf-telas-filtro-status button {
+    flex: 1 0 auto;
+  }
+
+  .cf-telas-select {
+    flex: 1;
+  }
+
+  .cf-telas-resultados-topo {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .cf-tela-detalhes-grid,
+  .cf-tela-sincronizacao {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .cf-tela-card-informacoes {
+    grid-template-columns: 1fr;
+  }
+
+  .cf-tela-detalhes-header,
+  .cf-tela-detalhes-conteudo,
+  .cf-tela-detalhes-acoes {
+    padding-right: 17px;
+    padding-left: 17px;
+  }
+
+  .cf-tela-detalhes-status {
+    padding-right: 17px;
+    padding-left: 17px;
+  }
+
+  .cf-tela-detalhes-mensagem {
+    margin-right: 17px;
+    margin-left: 17px;
+  }
+
+  .cf-tela-detalhes-acoes {
+    grid-template-columns: 1fr;
+  }
+
+  .cf-tela-detalhes-acoes
+    .cf-cloud-button:last-child {
+    grid-column: auto;
+  }
+}

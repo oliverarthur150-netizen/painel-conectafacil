@@ -1,0 +1,4911 @@
+/* =========================================================
+   CONECTAFÁCIL TV INDOOR
+   APP.CSS — PARTE 1 DE 4
+
+   01. CONFIGURAÇÕES GERAIS
+   02. ESTRUTURA DO APLICATIVO
+   03. CABEÇALHO
+   04. PAINEL DE CONTROLE
+   05. ÁREA PRINCIPAL
+========================================================= */
+
+
+/* =========================================================
+   01. CONFIGURAÇÕES GERAIS
+========================================================= */
+
+:root {
+  font-family:
+    Inter,
+    "Segoe UI",
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  color: #ffffff;
+  background: #040a14;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+
+  --azul-principal: #00cfff;
+  --azul-claro: #7ddcff;
+  --azul-medio: #1789ff;
+  --azul-escuro: #07182d;
+
+  --verde: #22c55e;
+  --verde-claro: #4ade80;
+
+  --vermelho: #ef4444;
+  --vermelho-escuro: #b91c1c;
+
+  --roxo: #8b5cf6;
+  --roxo-claro: #a855f7;
+
+  --texto-principal: #f4fbff;
+  --texto-secundario: #bdd3e4;
+  --texto-suave: #8299ad;
+
+  --fundo-principal: #040a14;
+  --fundo-secundario: #071220;
+  --fundo-card: rgba(15, 31, 52, 0.92);
+
+  --borda-suave: rgba(255, 255, 255, 0.09);
+  --borda-azul: rgba(0, 207, 255, 0.35);
+
+  --sombra-grande:
+    0 24px 65px rgba(0, 0, 0, 0.42);
+
+  --sombra-media:
+    0 14px 35px rgba(0, 0, 0, 0.3);
+
+  --transicao:
+    0.22s ease;
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+html,
+body,
+#root {
+  width: 100%;
+  min-width: 320px;
+  min-height: 100%;
+}
+
+
+html {
+  background: var(--fundo-principal);
+}
+
+
+body {
+  min-height: 100vh;
+
+  color: var(--texto-principal);
+
+  background:
+    radial-gradient(
+      circle at 20% 0%,
+      rgba(0, 207, 255, 0.13),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 90% 20%,
+      rgba(23, 137, 255, 0.09),
+      transparent 30%
+    ),
+    linear-gradient(
+      145deg,
+      #030914,
+      #071321 52%,
+      #030914
+    );
+
+  overflow-x: hidden;
+}
+
+
+button,
+input {
+  font: inherit;
+}
+
+
+button {
+  border: 0;
+}
+
+
+button,
+input,
+img,
+video {
+  -webkit-tap-highlight-color: transparent;
+}
+
+
+button:focus-visible,
+input:focus-visible {
+  outline:
+    3px solid rgba(0, 207, 255, 0.28);
+
+  outline-offset: 2px;
+}
+
+
+::selection {
+  color: #00131d;
+  background: var(--azul-principal);
+}
+
+
+/* =========================================================
+   02. ESTRUTURA DO APLICATIVO
+========================================================= */
+
+.aplicativo {
+  width: 100%;
+  height: 100vh;
+  min-height: 650px;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 28% 16%,
+      rgba(0, 207, 255, 0.08),
+      transparent 32%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(3, 9, 20, 0.99),
+      rgba(6, 20, 36, 0.99)
+    );
+
+  position: relative;
+  isolation: isolate;
+}
+
+
+.aplicativo::before {
+  content: "";
+
+  position: fixed;
+  inset: 0;
+
+  z-index: -1;
+  pointer-events: none;
+
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.015) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.015) 1px,
+      transparent 1px
+    );
+
+  background-size: 48px 48px;
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.55),
+      transparent 85%
+    );
+}
+
+
+/* =========================================================
+   03. CABEÇALHO PREMIUM
+========================================================= */
+
+.header-premium {
+  flex: 0 0 86px;
+  width: 100%;
+
+  display: grid;
+  grid-template-columns:
+    minmax(290px, 1fr)
+    auto
+    minmax(290px, 1fr);
+
+  align-items: center;
+
+  gap: 20px;
+
+  padding: 0 26px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.985),
+      rgba(232, 247, 255, 0.97)
+    );
+
+  border-bottom:
+    3px solid var(--azul-principal);
+
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.2),
+    0 0 25px rgba(0, 207, 255, 0.13);
+
+  position: relative;
+  z-index: 60;
+}
+
+
+.header-premium::after {
+  content: "";
+
+  position: absolute;
+
+  left: 10%;
+  right: 10%;
+  bottom: -3px;
+
+  height: 3px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--azul-principal),
+      #ffffff,
+      var(--azul-principal),
+      transparent
+    );
+
+  box-shadow:
+    0 0 18px rgba(0, 207, 255, 0.68);
+}
+
+
+.header-logo {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 15px;
+}
+
+
+.header-logo > img {
+  width: 190px;
+  height: 65px;
+
+  flex: 0 0 auto;
+
+  object-fit: contain;
+  object-position: left center;
+
+  filter:
+    drop-shadow(
+      0 5px 10px rgba(8, 46, 83, 0.13)
+    );
+}
+
+
+.header-titulos {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 2px;
+
+  padding-left: 15px;
+
+  border-left:
+    1px solid rgba(11, 44, 84, 0.16);
+}
+
+
+.header-sistema {
+  color: #082b50;
+
+  font-size: 14px;
+  font-weight: 950;
+
+  letter-spacing: 1.6px;
+
+  white-space: nowrap;
+}
+
+
+.header-titulos small {
+  color: #64748b;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+
+.header-centro {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.header-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 38px;
+
+  padding: 0 18px;
+
+  color: #0b3767;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(0, 207, 255, 0.12),
+      rgba(23, 137, 255, 0.08)
+    );
+
+  border:
+    1px solid rgba(0, 152, 215, 0.19);
+
+  border-radius: 999px;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    0 7px 18px rgba(0, 118, 180, 0.08);
+
+  font-size: 13px;
+  font-weight: 850;
+
+  white-space: nowrap;
+}
+
+
+.header-direita {
+  min-width: 0;
+
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-areas:
+    "data hora"
+    "info info";
+
+  align-items: center;
+  justify-content: end;
+
+  column-gap: 16px;
+  row-gap: 3px;
+}
+
+
+.header-data {
+  grid-area: data;
+
+  max-width: 230px;
+
+  color: #64748b;
+
+  font-size: 11px;
+  font-weight: 750;
+
+  text-transform: capitalize;
+  text-align: right;
+
+  line-height: 1.25;
+}
+
+
+.header-hora {
+  grid-area: hora;
+
+  color: #082b50;
+
+  font-size: 29px;
+  font-weight: 950;
+
+  letter-spacing: 0.8px;
+  line-height: 1;
+}
+
+
+.header-informacoes {
+  grid-area: info;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 14px;
+}
+
+
+.header-clima {
+  color: #334155;
+
+  font-size: 12px;
+  font-weight: 800;
+}
+
+
+.header-online {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 7px;
+
+  color: #047857;
+
+  font-size: 12px;
+  font-weight: 850;
+}
+
+
+.header-ponto {
+  width: 8px;
+  height: 8px;
+
+  flex: 0 0 8px;
+
+  background: var(--verde);
+
+  border-radius: 50%;
+
+  box-shadow:
+    0 0 11px rgba(34, 197, 94, 0.75);
+
+  animation:
+    pulsarStatus 1.5s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   04. PAINEL DE CONTROLE
+========================================================= */
+
+.painel-controle {
+  flex: 0 0 auto;
+  width: 100%;
+
+  display: grid;
+  grid-template-columns:
+    auto
+    minmax(0, 1fr);
+
+  align-items: center;
+
+  gap: 14px;
+
+  padding: 11px 18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(10, 25, 44, 0.985),
+      rgba(5, 14, 28, 0.985)
+    );
+
+  border-bottom:
+    1px solid var(--borda-suave);
+
+  box-shadow:
+    0 8px 28px rgba(0, 0, 0, 0.2);
+
+  position: relative;
+  z-index: 50;
+}
+
+
+.painel-controle::before {
+  content: "";
+
+  position: absolute;
+
+  left: 18px;
+  right: 18px;
+  top: 0;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(0, 207, 255, 0.2),
+      transparent
+    );
+}
+
+
+.input-arquivo {
+  display: none;
+}
+
+
+.controle-arquivos {
+  display: grid;
+  grid-template-columns:
+    repeat(2, auto);
+
+  gap: 9px;
+}
+
+
+.controle-embarque {
+  min-width: 0;
+
+  display: grid;
+  grid-template-columns:
+    minmax(210px, 1fr)
+    minmax(145px, 0.42fr)
+    auto
+    auto;
+
+  align-items: center;
+
+  gap: 9px;
+}
+
+
+.campo-controle {
+  width: 100%;
+  min-width: 0;
+  height: 43px;
+
+  padding: 0 14px;
+
+  color: #edfaff;
+  caret-color: var(--azul-principal);
+
+  background:
+    rgba(255, 255, 255, 0.065);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.115);
+
+  border-radius: 11px;
+
+  outline: none;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.025);
+
+  transition:
+    border-color var(--transicao),
+    background var(--transicao),
+    box-shadow var(--transicao);
+}
+
+
+.campo-controle::placeholder {
+  color: #8598aa;
+}
+
+
+.campo-controle:hover {
+  background:
+    rgba(255, 255, 255, 0.085);
+
+  border-color:
+    rgba(255, 255, 255, 0.16);
+}
+
+
+.campo-controle:focus {
+  background:
+    rgba(255, 255, 255, 0.1);
+
+  border-color:
+    rgba(0, 207, 255, 0.68);
+
+  box-shadow:
+    0 0 0 3px rgba(0, 207, 255, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+
+.botao-controle {
+  min-height: 43px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  padding: 0 15px;
+
+  color: #ffffff;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.1);
+
+  border-radius: 11px;
+
+  box-shadow:
+    0 9px 22px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+
+  font-size: 12px;
+  font-weight: 850;
+
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  transition:
+    transform var(--transicao),
+    filter var(--transicao),
+    box-shadow var(--transicao),
+    opacity var(--transicao);
+}
+
+
+.botao-controle:hover:not(:disabled) {
+  transform: translateY(-2px);
+
+  filter: brightness(1.09);
+
+  box-shadow:
+    0 12px 27px rgba(0, 0, 0, 0.27),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+
+.botao-controle:active:not(:disabled) {
+  transform:
+    translateY(0)
+    scale(0.98);
+}
+
+
+.botao-controle:disabled {
+  opacity: 0.42;
+  cursor: not-allowed;
+
+  filter: grayscale(0.35);
+}
+
+
+.botao-icone {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 15px;
+  line-height: 1;
+}
+
+
+.botao-video {
+  background:
+    linear-gradient(
+      135deg,
+      #1768d5,
+      #2588ff
+    );
+}
+
+
+.botao-imagem {
+  background:
+    linear-gradient(
+      135deg,
+      #7038d4,
+      #a24bf3
+    );
+}
+
+
+.botao-adicionar {
+  background:
+    linear-gradient(
+      135deg,
+      #047c58,
+      #12b981
+    );
+}
+
+
+.botao-limpar {
+  background:
+    linear-gradient(
+      135deg,
+      var(--vermelho-escuro),
+      var(--vermelho)
+    );
+}
+
+
+/* =========================================================
+   05. ÁREA PRINCIPAL
+========================================================= */
+
+.area-principal {
+  flex: 1;
+  min-height: 0;
+
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(310px, 370px);
+
+  gap: 16px;
+
+  padding: 16px;
+
+  overflow: hidden;
+
+  position: relative;
+}
+
+
+.area-principal::before {
+  content: "";
+
+  position: absolute;
+
+  left: 16px;
+  right: 16px;
+  top: 7px;
+
+  height: 1px;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(0, 207, 255, 0.14),
+      transparent
+    );
+}
+
+
+/* =========================================================
+   ANIMAÇÃO UTILIZADA NESTA PARTE
+========================================================= */
+
+@keyframes pulsarStatus {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.42;
+    transform: scale(0.82);
+  }
+}
+/* =========================================================
+   CONECTAFÁCIL TV INDOOR
+   APP.CSS — PARTE 2 DE 4
+
+   06. TV PREMIUM
+   07. ABERTURA DA TV
+   08. PAINEL DE EMBARQUES
+========================================================= */
+
+
+/* =========================================================
+   06. TV PREMIUM
+========================================================= */
+
+.tv {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+
+  position: relative;
+
+  overflow: hidden;
+  isolation: isolate;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(0, 207, 255, 0.16),
+      transparent 40%
+    ),
+    linear-gradient(
+      145deg,
+      #07182b,
+      #020711
+    );
+
+  border:
+    1px solid rgba(125, 220, 255, 0.18);
+
+  border-radius: 23px;
+
+  box-shadow:
+    0 25px 65px rgba(0, 0, 0, 0.48),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+}
+
+
+.tv::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  z-index: 20;
+  pointer-events: none;
+
+  border-radius: inherit;
+
+  box-shadow:
+    inset 0 0 42px rgba(0, 0, 0, 0.3),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.025);
+}
+
+
+.tv::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  z-index: 21;
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      112deg,
+      transparent 0%,
+      transparent 40%,
+      rgba(255, 255, 255, 0.1) 49%,
+      transparent 58%,
+      transparent 100%
+    );
+
+  transform: translateX(-145%);
+
+  animation:
+    reflexoTela 10s ease-in-out infinite;
+}
+
+
+.tv-conteudo {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+
+  position: relative;
+
+  overflow: hidden;
+
+  background: #020711;
+}
+
+
+.tv-conteudo::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 8%;
+  right: 8%;
+
+  height: 3px;
+
+  z-index: 17;
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--azul-principal),
+      #ffffff,
+      var(--azul-principal),
+      transparent
+    );
+
+  box-shadow:
+    0 0 22px rgba(0, 207, 255, 0.86);
+}
+
+
+.tv-midia {
+  position: absolute;
+  inset: 0;
+
+  z-index: 2;
+
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-position: center;
+  background: #020711;
+
+  animation:
+    entradaMidia 0.75s ease both;
+}
+
+
+/* Vídeos ocupam a tela preservando a proporção */
+
+.tv-video {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  object-position: center;
+
+  background: #000000;
+}
+
+
+/* Configuração geral das imagens */
+
+.tv-imagem {
+  width: 100%;
+  height: 100%;
+
+  position: relative;
+  z-index: 3;
+
+  object-position: center;
+
+  animation:
+    entradaMidia 0.75s ease both;
+}
+
+
+/* Imagem horizontal preenche a TV */
+
+.tv-imagem-horizontal {
+  object-fit: cover;
+
+  animation:
+    entradaMidia 0.75s ease both,
+    zoomImagemHorizontal 16s ease-in-out infinite alternate;
+}
+
+
+/* Imagem vertical aparece inteira */
+
+.tv-imagem-vertical {
+  object-fit: contain;
+
+  padding: 10px;
+
+  background: transparent;
+
+  animation:
+    entradaMidia 0.75s ease both,
+    respirarImagemVertical 15s ease-in-out infinite alternate;
+}
+
+
+/* Fundo desfocado para imagens verticais */
+
+.tv-fundo-desfocado {
+  position: absolute;
+  inset: -45px;
+
+  z-index: 1;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  filter:
+    blur(30px)
+    brightness(0.53)
+    saturate(1.25);
+
+  opacity: 0.9;
+
+  transform: scale(1.16);
+
+  animation:
+    entradaFundoTV 0.8s ease both;
+}
+
+
+/* Camada para melhorar a leitura sobre as propagandas */
+
+.tv-sombra {
+  position: absolute;
+  inset: 0;
+
+  z-index: 6;
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 6, 15, 0.34),
+      rgba(0, 8, 17, 0.04) 48%,
+      rgba(0, 6, 15, 0.28)
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.08),
+      transparent 45%,
+      rgba(0, 0, 0, 0.28)
+    );
+}
+
+
+/* Apresentação central da marca */
+
+.tv-apresentacao {
+  position: absolute;
+  inset: 0;
+
+  z-index: 10;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 35px;
+
+  text-align: center;
+
+  pointer-events: none;
+}
+
+
+.tv-apresentacao-logo,
+.tv-logo {
+  width: min(390px, 58%);
+  min-height: 88px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 12px 24px;
+
+  background:
+    rgba(255, 255, 255, 0.93);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.52);
+
+  border-radius: 21px;
+
+  box-shadow:
+    0 22px 55px rgba(0, 0, 0, 0.38),
+    0 0 35px rgba(0, 207, 255, 0.2);
+
+  backdrop-filter: blur(15px);
+
+  animation:
+    respirarLogoTV 4s ease-in-out infinite;
+}
+
+
+.tv-apresentacao-logo img,
+.tv-logo img {
+  width: 100%;
+  max-height: 78px;
+
+  display: block;
+
+  object-fit: contain;
+}
+
+
+.tv-apresentacao h1 {
+  max-width: 760px;
+
+  margin-top: 19px;
+
+  color: #ffffff;
+
+  font-size:
+    clamp(27px, 3.5vw, 51px);
+
+  font-weight: 950;
+  line-height: 1.05;
+
+  text-shadow:
+    0 5px 23px rgba(0, 0, 0, 0.8),
+    0 0 25px rgba(0, 207, 255, 0.17);
+}
+
+
+.tv-apresentacao p {
+  max-width: 650px;
+
+  margin-top: 10px;
+
+  color: #def8ff;
+
+  font-size:
+    clamp(14px, 1.35vw, 20px);
+
+  font-weight: 650;
+  line-height: 1.4;
+
+  text-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.82);
+}
+
+
+.tv-selo {
+  margin-top: 16px;
+
+  padding: 7px 17px;
+
+  color: #001923;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--azul-principal),
+      var(--azul-claro)
+    );
+
+  border-radius: 999px;
+
+  box-shadow:
+    0 8px 22px rgba(0, 207, 255, 0.28);
+
+  font-size: 11px;
+  font-weight: 950;
+
+  letter-spacing: 2.7px;
+}
+
+
+/* Informações inferiores da programação */
+
+.tv-programacao-status {
+  position: absolute;
+
+  left: 16px;
+  right: 16px;
+  bottom: 14px;
+
+  z-index: 16;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  pointer-events: none;
+}
+
+
+.tv-status,
+.tv-posicao {
+  min-height: 31px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  padding: 6px 12px;
+
+  color: #def9ff;
+
+  background:
+    rgba(0, 9, 20, 0.64);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.13);
+
+  border-radius: 999px;
+
+  backdrop-filter: blur(10px);
+
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.22);
+
+  font-size: 11px;
+  font-weight: 800;
+}
+
+
+.tv-status-ponto {
+  width: 8px;
+  height: 8px;
+
+  flex: 0 0 8px;
+
+  background: var(--verde);
+
+  border-radius: 50%;
+
+  box-shadow:
+    0 0 12px rgba(34, 197, 94, 0.9);
+
+  animation:
+    pulsarStatus 1.5s ease-in-out infinite;
+}
+
+
+/* Barra de progresso da mídia */
+
+.tv-progresso {
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: 4px;
+
+  z-index: 18;
+
+  overflow: hidden;
+
+  background:
+    rgba(255, 255, 255, 0.07);
+}
+
+
+.tv-progresso-preenchimento {
+  height: 100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      #087ed8,
+      var(--azul-principal),
+      var(--azul-claro)
+    );
+
+  border-radius: 999px;
+
+  box-shadow:
+    0 0 16px rgba(0, 207, 255, 0.75);
+
+  transition:
+    width 0.1s linear;
+}
+
+
+/* Estado sem imagens ou vídeos */
+
+.tv-sem-conteudo {
+  position: absolute;
+  inset: 0;
+
+  z-index: 5;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+
+  padding: 30px;
+
+  color: #ffffff;
+
+  text-align: center;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(0, 207, 255, 0.18),
+      transparent 38%
+    ),
+    linear-gradient(
+      145deg,
+      #09274a,
+      #020812
+    );
+}
+
+
+.tv-sem-conteudo span {
+  font-size: 52px;
+
+  filter:
+    drop-shadow(
+      0 8px 18px rgba(0, 0, 0, 0.3)
+    );
+}
+
+
+.tv-sem-conteudo strong {
+  font-size: 21px;
+  font-weight: 900;
+}
+
+
+.tv-sem-conteudo small {
+  color: var(--texto-suave);
+
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   07. ABERTURA DA TV
+========================================================= */
+
+.tv-abertura {
+  position: absolute;
+  inset: 0;
+
+  z-index: 100;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(0, 207, 255, 0.2),
+      transparent 38%
+    ),
+    linear-gradient(
+      145deg,
+      #020812,
+      #092343
+    );
+
+  animation:
+    desaparecerAbertura 0.65s ease 1.85s forwards;
+}
+
+
+.tv-abertura::before {
+  content: "";
+
+  position: absolute;
+
+  width: 620px;
+  height: 620px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(0, 207, 255, 0.2),
+      transparent 67%
+    );
+
+  animation:
+    pulsarBrilhoAbertura 2s ease-in-out infinite;
+}
+
+
+.tv-abertura-conteudo {
+  width: min(430px, 82%);
+
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+
+  animation:
+    entradaAbertura 0.65s ease both;
+}
+
+
+.tv-abertura-logo {
+  width: min(360px, 100%);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 17px 28px;
+
+  background:
+    rgba(255, 255, 255, 0.96);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.5);
+
+  border-radius: 23px;
+
+  box-shadow:
+    0 25px 65px rgba(0, 0, 0, 0.42),
+    0 0 40px rgba(0, 207, 255, 0.24);
+}
+
+
+.tv-abertura-logo img {
+  width: 100%;
+  max-height: 88px;
+
+  object-fit: contain;
+}
+
+
+.tv-abertura h1 {
+  margin-top: 17px;
+
+  color: #ffffff;
+
+  font-size:
+    clamp(27px, 3.5vw, 39px);
+
+  font-weight: 950;
+
+  text-shadow:
+    0 5px 18px rgba(0, 0, 0, 0.62);
+}
+
+
+.tv-abertura p {
+  margin-top: 5px;
+
+  color: #a8ebff;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+
+.tv-barra-carregamento {
+  width: 100%;
+  height: 9px;
+
+  margin-top: 21px;
+
+  overflow: hidden;
+
+  background:
+    rgba(255, 255, 255, 0.09);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.1);
+
+  border-radius: 999px;
+}
+
+
+.tv-barra-progresso {
+  width: 100%;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      #087ed8,
+      var(--azul-principal),
+      var(--azul-claro)
+    );
+
+  border-radius: inherit;
+
+  box-shadow:
+    0 0 19px rgba(0, 207, 255, 0.78);
+
+  transform-origin: left center;
+
+  animation:
+    carregarAbertura 2s linear forwards;
+}
+
+
+/* =========================================================
+   08. PAINEL DE EMBARQUES
+========================================================= */
+
+.painel-embarques {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 17px;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(0, 207, 255, 0.1),
+      transparent 32%
+    ),
+    linear-gradient(
+      160deg,
+      rgba(15, 32, 54, 0.97),
+      rgba(4, 13, 26, 0.985)
+    );
+
+  border:
+    1px solid rgba(255, 255, 255, 0.095);
+
+  border-radius: 23px;
+
+  box-shadow:
+    0 25px 65px rgba(0, 0, 0, 0.39),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.025);
+
+  position: relative;
+}
+
+
+.painel-embarques::before {
+  content: "";
+
+  position: absolute;
+
+  left: 12%;
+  right: 12%;
+  top: 0;
+
+  height: 2px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--azul-principal),
+      transparent
+    );
+
+  box-shadow:
+    0 0 15px rgba(0, 207, 255, 0.5);
+}
+
+
+.painel-embarques-topo {
+  flex: 0 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  padding-bottom: 14px;
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.085);
+}
+
+
+.painel-legenda {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #5cd8ff;
+
+  font-size: 10px;
+  font-weight: 950;
+
+  letter-spacing: 2.1px;
+}
+
+
+.painel-embarques-topo h2 {
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+
+  color: #f0fbff;
+
+  font-size: 20px;
+  font-weight: 900;
+
+  line-height: 1.15;
+}
+
+
+.painel-contador {
+  min-width: 40px;
+  height: 40px;
+
+  flex: 0 0 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #001923;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--azul-principal),
+      var(--azul-claro)
+    );
+
+  border-radius: 12px;
+
+  box-shadow:
+    0 9px 23px rgba(0, 207, 255, 0.25);
+
+  font-size: 17px;
+  font-weight: 950;
+}
+
+
+.lista-embarques {
+  flex: 1;
+  min-height: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+
+  margin-top: 13px;
+  padding-right: 4px;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+
+.lista-embarques::-webkit-scrollbar {
+  width: 6px;
+}
+
+
+.lista-embarques::-webkit-scrollbar-track {
+  background:
+    rgba(255, 255, 255, 0.035);
+
+  border-radius: 999px;
+}
+
+
+.lista-embarques::-webkit-scrollbar-thumb {
+  background:
+    linear-gradient(
+      var(--azul-principal),
+      var(--azul-medio)
+    );
+
+  border-radius: 999px;
+}
+
+
+.embarques-vazio {
+  flex: 1;
+  min-height: 210px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  padding: 20px;
+
+  color: #dcefff;
+
+  text-align: center;
+
+  background:
+    rgba(255, 255, 255, 0.033);
+
+  border:
+    1px dashed rgba(125, 220, 255, 0.22);
+
+  border-radius: 16px;
+}
+
+
+.vazio-icone {
+  font-size: 42px;
+
+  opacity: 0.9;
+}
+
+
+.embarques-vazio strong {
+  font-size: 15px;
+  font-weight: 850;
+}
+
+
+.embarques-vazio small {
+  max-width: 235px;
+
+  color: var(--texto-suave);
+
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+
+.cartao-embarque {
+  width: 100%;
+  min-height: 79px;
+
+  flex: 0 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  padding: 13px;
+
+  color: #ffffff;
+
+  background:
+    rgba(255, 255, 255, 0.052);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.085);
+
+  border-left:
+    4px solid #38bdf8;
+
+  border-radius: 15px;
+
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.12);
+
+  position: relative;
+  overflow: hidden;
+
+  animation:
+    entradaCartao 0.42s ease both;
+
+  transition:
+    transform var(--transicao),
+    border-color var(--transicao),
+    background var(--transicao),
+    box-shadow var(--transicao);
+}
+
+
+.cartao-embarque:hover {
+  transform: translateY(-2px);
+
+  background:
+    rgba(255, 255, 255, 0.078);
+
+  border-color:
+    rgba(56, 189, 248, 0.3);
+
+  box-shadow:
+    0 12px 26px rgba(0, 0, 0, 0.2);
+}
+
+
+.cartao-destaque {
+  min-height: 108px;
+
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(0, 207, 255, 0.27),
+      transparent 38%
+    ),
+    linear-gradient(
+      135deg,
+      #0a3b73,
+      #07274e
+    );
+
+  border:
+    1px solid rgba(0, 207, 255, 0.4);
+
+  border-left:
+    5px solid var(--azul-principal);
+
+  box-shadow:
+    0 13px 30px rgba(0, 0, 0, 0.29),
+    0 0 25px rgba(0, 207, 255, 0.12);
+
+  animation:
+    entradaCartao 0.42s ease both,
+    brilhoCartaoPrincipal 3.5s ease-in-out infinite;
+}
+
+
+.cartao-informacoes {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 7px;
+}
+
+
+.selo-proximo {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 7px;
+
+  color: #67e8f9;
+
+  font-size: 9px;
+  font-weight: 950;
+
+  letter-spacing: 1.25px;
+}
+
+
+.ponto-verde {
+  width: 8px;
+  height: 8px;
+
+  flex: 0 0 8px;
+
+  display: inline-block;
+
+  background: var(--verde);
+
+  border-radius: 50%;
+
+  box-shadow:
+    0 0 11px rgba(34, 197, 94, 0.92);
+
+  animation:
+    pulsarStatus 1.5s ease-in-out infinite;
+}
+
+
+.embarque-destino {
+  max-width: 245px;
+
+  display: flex;
+  align-items: flex-start;
+
+  gap: 7px;
+
+  color: #ffffff;
+
+  font-size: 17px;
+  font-weight: 950;
+
+  line-height: 1.18;
+
+  overflow-wrap: anywhere;
+}
+
+
+.cartao-destaque .embarque-destino {
+  font-size: 20px;
+}
+
+
+.embarque-horario {
+  display: flex;
+  align-items: center;
+
+  gap: 6px;
+
+  color: #fde68a;
+
+  font-size: 16px;
+  font-weight: 900;
+
+  letter-spacing: 0.25px;
+}
+
+
+.botao-excluir {
+  width: 37px;
+  height: 37px;
+
+  flex: 0 0 37px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #fecaca;
+
+  background:
+    rgba(239, 68, 68, 0.11);
+
+  border:
+    1px solid rgba(248, 113, 113, 0.18);
+
+  border-radius: 11px;
+
+  cursor: pointer;
+
+  font-size: 16px;
+
+  transition:
+    transform var(--transicao),
+    color var(--transicao),
+    background var(--transicao),
+    border-color var(--transicao);
+}
+
+
+.botao-excluir:hover {
+  color: #ffffff;
+
+  background:
+    rgba(239, 68, 68, 0.86);
+
+  border-color:
+    rgba(255, 255, 255, 0.2);
+
+  transform: scale(1.06);
+}
+
+
+.botao-excluir:active {
+  transform: scale(0.95);
+}
+
+
+.painel-embarques-rodape {
+  flex: 0 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  margin-top: 12px;
+  padding-top: 11px;
+
+  color: #a9c5d8;
+
+  border-top:
+    1px solid rgba(255, 255, 255, 0.07);
+
+  font-size: 10px;
+  font-weight: 750;
+
+  letter-spacing: 0.3px;
+}
+
+
+/* =========================================================
+   ANIMAÇÕES UTILIZADAS NESTA PARTE
+========================================================= */
+
+@keyframes entradaMidia {
+  from {
+    opacity: 0;
+    transform: scale(1.025);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+@keyframes entradaFundoTV {
+  from {
+    opacity: 0;
+    transform: scale(1.22);
+  }
+
+  to {
+    opacity: 0.9;
+    transform: scale(1.16);
+  }
+}
+
+
+@keyframes zoomImagemHorizontal {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.035);
+  }
+}
+
+
+@keyframes respirarImagemVertical {
+  from {
+    transform: scale(0.985);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+
+@keyframes reflexoTela {
+  0%,
+  73% {
+    transform: translateX(-145%);
+  }
+
+  89%,
+  100% {
+    transform: translateX(145%);
+  }
+}
+
+
+@keyframes respirarLogoTV {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.018);
+  }
+}
+
+
+@keyframes entradaAbertura {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
+@keyframes pulsarBrilhoAbertura {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.94);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+
+
+@keyframes carregarAbertura {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+
+@keyframes desaparecerAbertura {
+  from {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.035);
+  }
+}
+
+
+@keyframes entradaCartao {
+  from {
+    opacity: 0;
+    transform: translateX(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+
+@keyframes brilhoCartaoPrincipal {
+  0%,
+  100% {
+    box-shadow:
+      0 13px 30px rgba(0, 0, 0, 0.29),
+      0 0 15px rgba(0, 207, 255, 0.08);
+  }
+
+  50% {
+    box-shadow:
+      0 13px 30px rgba(0, 0, 0, 0.29),
+      0 0 29px rgba(0, 207, 255, 0.25);
+  }
+}
+/* =========================================================
+   CONECTAFÁCIL TV INDOOR
+   APP.CSS — PARTE 3 DE 4
+
+   09. TICKER
+   10. RODAPÉ
+   11. RESPONSIVIDADE PARA NOTEBOOK E TELAS MENORES
+========================================================= */
+
+
+/* =========================================================
+   09. TICKER
+========================================================= */
+
+.ticker {
+  flex: 0 0 42px;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+
+  overflow: hidden;
+
+  color: #001923;
+
+  background:
+    linear-gradient(
+      90deg,
+      #00b9dc,
+      var(--azul-principal),
+      var(--azul-claro),
+      var(--azul-principal)
+    );
+
+  border-top:
+    1px solid rgba(255, 255, 255, 0.28);
+
+  box-shadow:
+    0 -7px 22px rgba(0, 0, 0, 0.18),
+    0 0 20px rgba(0, 207, 255, 0.12);
+
+  position: relative;
+  z-index: 40;
+}
+
+
+.ticker::before,
+.ticker::after {
+  content: "";
+
+  position: absolute;
+  top: 0;
+  bottom: 0;
+
+  width: 70px;
+
+  z-index: 3;
+  pointer-events: none;
+}
+
+
+.ticker::before {
+  left: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 185, 220, 1),
+      rgba(0, 185, 220, 0)
+    );
+}
+
+
+.ticker::after {
+  right: 0;
+
+  background:
+    linear-gradient(
+      270deg,
+      rgba(0, 207, 255, 1),
+      rgba(0, 207, 255, 0)
+    );
+}
+
+
+.ticker-conteudo {
+  min-width: max-content;
+
+  display: inline-flex;
+  align-items: center;
+
+  gap: 18px;
+
+  padding-left: 100%;
+
+  font-size: 13px;
+  font-weight: 950;
+
+  letter-spacing: 0.25px;
+
+  white-space: nowrap;
+
+  animation:
+    moverTicker 27s linear infinite;
+}
+
+
+.ticker-conteudo span {
+  display: inline-flex;
+  align-items: center;
+}
+
+
+.ticker:hover .ticker-conteudo {
+  animation-play-state: paused;
+}
+
+
+/* =========================================================
+   10. RODAPÉ
+========================================================= */
+
+.rodape {
+  flex: 0 0 34px;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 18px;
+
+  padding: 0 20px;
+
+  color: #8ea5b8;
+
+  background:
+    linear-gradient(
+      90deg,
+      #030812,
+      #06101d,
+      #030812
+    );
+
+  border-top:
+    1px solid rgba(255, 255, 255, 0.055);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.018);
+
+  font-size: 10px;
+  font-weight: 750;
+
+  letter-spacing: 0.75px;
+
+  position: relative;
+  z-index: 40;
+}
+
+
+.rodape > span:first-child {
+  color: #9eb6c8;
+}
+
+
+.rodape-status {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 7px;
+
+  color: #b7f5cf;
+}
+
+
+.ponto-online {
+  width: 7px;
+  height: 7px;
+
+  flex: 0 0 7px;
+
+  display: inline-block;
+
+  background: var(--verde);
+
+  border-radius: 50%;
+
+  box-shadow:
+    0 0 9px rgba(34, 197, 94, 0.9);
+
+  animation:
+    pulsarStatus 1.7s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   11. RESPONSIVIDADE
+========================================================= */
+
+
+/* ---------------------------------------------------------
+   TELAS ENTRE 1200px E 1400px
+--------------------------------------------------------- */
+
+@media (max-width: 1400px) {
+  .header-premium {
+    grid-template-columns:
+      minmax(260px, 1fr)
+      auto
+      minmax(260px, 1fr);
+
+    gap: 14px;
+
+    padding:
+      0 20px;
+  }
+
+
+  .header-logo > img {
+    width: 170px;
+  }
+
+
+  .header-titulos {
+    padding-left: 12px;
+  }
+
+
+  .header-sistema {
+    font-size: 13px;
+  }
+
+
+  .header-chip {
+    padding:
+      0 14px;
+
+    font-size: 12px;
+  }
+
+
+  .header-hora {
+    font-size: 27px;
+  }
+
+
+  .painel-controle {
+    gap: 10px;
+
+    padding:
+      10px 14px;
+  }
+
+
+  .controle-arquivos,
+  .controle-embarque {
+    gap: 8px;
+  }
+
+
+  .botao-controle {
+    padding:
+      0 12px;
+
+    font-size: 11px;
+  }
+
+
+  .area-principal {
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(300px, 345px);
+
+    gap: 13px;
+
+    padding: 13px;
+  }
+
+
+  .painel-embarques {
+    padding: 15px;
+  }
+
+
+  .painel-embarques-topo h2 {
+    font-size: 18px;
+  }
+
+
+  .embarque-destino {
+    max-width: 215px;
+  }
+}
+
+
+/* ---------------------------------------------------------
+   NOTEBOOKS E TELAS ATÉ 1200px
+--------------------------------------------------------- */
+
+@media (max-width: 1200px) {
+  .header-premium {
+    flex-basis: 78px;
+
+    grid-template-columns:
+      minmax(220px, 1fr)
+      auto
+      minmax(220px, 1fr);
+
+    padding:
+      0 16px;
+  }
+
+
+  .header-logo {
+    gap: 10px;
+  }
+
+
+  .header-logo > img {
+    width: 150px;
+    height: 58px;
+  }
+
+
+  .header-titulos {
+    padding-left: 10px;
+  }
+
+
+  .header-sistema {
+    font-size: 11px;
+    letter-spacing: 1.2px;
+  }
+
+
+  .header-titulos small {
+    font-size: 9px;
+  }
+
+
+  .header-chip {
+    min-height: 34px;
+
+    padding:
+      0 12px;
+
+    font-size: 11px;
+  }
+
+
+  .header-direita {
+    column-gap: 10px;
+  }
+
+
+  .header-data,
+  .header-clima,
+  .header-online {
+    font-size: 10px;
+  }
+
+
+  .header-hora {
+    font-size: 24px;
+  }
+
+
+  .painel-controle {
+    grid-template-columns:
+      1fr;
+
+    gap: 8px;
+
+    padding:
+      9px 12px;
+  }
+
+
+  .controle-arquivos {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+
+  .controle-embarque {
+    grid-template-columns:
+      minmax(190px, 1fr)
+      minmax(135px, 0.42fr)
+      auto
+      auto;
+  }
+
+
+  .botao-controle {
+    min-height: 40px;
+  }
+
+
+  .campo-controle {
+    height: 40px;
+  }
+
+
+  .area-principal {
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(285px, 320px);
+
+    padding: 11px;
+    gap: 11px;
+  }
+
+
+  .painel-embarques {
+    padding: 13px;
+  }
+
+
+  .painel-embarques-topo {
+    padding-bottom: 11px;
+  }
+
+
+  .painel-legenda {
+    font-size: 9px;
+  }
+
+
+  .painel-embarques-topo h2 {
+    font-size: 17px;
+  }
+
+
+  .painel-contador {
+    min-width: 36px;
+    height: 36px;
+
+    flex-basis: 36px;
+
+    font-size: 15px;
+  }
+
+
+  .cartao-embarque {
+    min-height: 73px;
+
+    padding: 11px;
+  }
+
+
+  .cartao-destaque {
+    min-height: 98px;
+  }
+
+
+  .embarque-destino {
+    max-width: 190px;
+
+    font-size: 15px;
+  }
+
+
+  .cartao-destaque .embarque-destino {
+    font-size: 18px;
+  }
+
+
+  .embarque-horario {
+    font-size: 14px;
+  }
+
+
+  .botao-excluir {
+    width: 34px;
+    height: 34px;
+
+    flex-basis: 34px;
+
+    font-size: 14px;
+  }
+
+
+  .tv-apresentacao-logo,
+  .tv-logo {
+    width:
+      min(330px, 54%);
+
+    min-height: 78px;
+  }
+
+
+  .tv-apresentacao-logo img,
+  .tv-logo img {
+    max-height: 68px;
+  }
+
+
+  .tv-apresentacao h1 {
+    margin-top: 15px;
+
+    font-size:
+      clamp(25px, 3.2vw, 42px);
+  }
+
+
+  .tv-apresentacao p {
+    font-size:
+      clamp(13px, 1.2vw, 17px);
+  }
+
+
+  .ticker {
+    flex-basis: 38px;
+  }
+
+
+  .ticker-conteudo {
+    font-size: 12px;
+  }
+
+
+  .rodape {
+    flex-basis: 31px;
+
+    font-size: 9px;
+  }
+}
+
+
+/* ---------------------------------------------------------
+   TELAS ATÉ 980px
+--------------------------------------------------------- */
+
+@media (max-width: 980px) {
+  body {
+    overflow-y: auto;
+  }
+
+
+  .aplicativo {
+    height: auto;
+    min-height: 100vh;
+
+    overflow: visible;
+  }
+
+
+  .header-premium {
+    min-height: 96px;
+
+    grid-template-columns:
+      1fr
+      auto;
+
+    grid-template-areas:
+      "logo direita"
+      "centro centro";
+
+    gap: 7px 12px;
+
+    padding:
+      9px 14px;
+  }
+
+
+  .header-logo {
+    grid-area: logo;
+  }
+
+
+  .header-centro {
+    grid-area: centro;
+  }
+
+
+  .header-direita {
+    grid-area: direita;
+  }
+
+
+  .header-logo > img {
+    width: 145px;
+    height: 55px;
+  }
+
+
+  .header-titulos {
+    display: none;
+  }
+
+
+  .header-chip {
+    min-height: 29px;
+
+    padding:
+      0 12px;
+
+    font-size: 10px;
+  }
+
+
+  .painel-controle {
+    grid-template-columns: 1fr;
+
+    padding:
+      10px;
+  }
+
+
+  .controle-arquivos {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+
+  .controle-embarque {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+
+  .botao-adicionar,
+  .botao-limpar {
+    width: 100%;
+  }
+
+
+  .area-principal {
+    min-height: 960px;
+
+    grid-template-columns: 1fr;
+
+    grid-template-rows:
+      minmax(470px, 58vh)
+      minmax(390px, auto);
+
+    gap: 14px;
+
+    padding: 13px;
+
+    overflow: visible;
+  }
+
+
+  .painel-embarques {
+    min-height: 390px;
+  }
+
+
+  .embarque-destino {
+    max-width: none;
+  }
+
+
+  .ticker {
+    flex-basis: 40px;
+  }
+
+
+  .rodape {
+    flex-wrap: wrap;
+
+    min-height: 34px;
+
+    padding:
+      7px 14px;
+  }
+}
+
+
+/* ---------------------------------------------------------
+   CELULARES E TELAS ATÉ 720px
+--------------------------------------------------------- */
+
+@media (max-width: 720px) {
+  .header-premium {
+    grid-template-columns: 1fr;
+
+    grid-template-areas:
+      "logo"
+      "direita"
+      "centro";
+
+    justify-items: center;
+
+    min-height: 160px;
+  }
+
+
+  .header-logo {
+    justify-content: center;
+  }
+
+
+  .header-logo > img {
+    width: 175px;
+  }
+
+
+  .header-direita {
+    justify-content: center;
+
+    grid-template-columns:
+      auto
+      auto;
+
+    column-gap: 12px;
+  }
+
+
+  .header-data {
+    text-align: center;
+  }
+
+
+  .header-informacoes {
+    justify-content: center;
+  }
+
+
+  .header-chip {
+    width: 100%;
+  }
+
+
+  .controle-arquivos,
+  .controle-embarque {
+    grid-template-columns: 1fr;
+  }
+
+
+  .botao-controle {
+    width: 100%;
+  }
+
+
+  .area-principal {
+    min-height: 900px;
+
+    grid-template-rows:
+      minmax(370px, 48vh)
+      minmax(390px, auto);
+
+    padding:
+      10px;
+  }
+
+
+  .tv {
+    border-radius: 18px;
+  }
+
+
+  .tv-apresentacao {
+    padding: 18px;
+  }
+
+
+  .tv-apresentacao-logo,
+  .tv-logo {
+    width:
+      min(260px, 72%);
+
+    min-height: 65px;
+
+    padding:
+      8px 15px;
+
+    border-radius: 16px;
+  }
+
+
+  .tv-apresentacao-logo img,
+  .tv-logo img {
+    max-height: 53px;
+  }
+
+
+  .tv-apresentacao h1 {
+    margin-top: 12px;
+
+    font-size:
+      clamp(22px, 7vw, 34px);
+  }
+
+
+  .tv-apresentacao p {
+    font-size: 13px;
+  }
+
+
+  .tv-selo {
+    margin-top: 11px;
+
+    padding:
+      5px 12px;
+
+    font-size: 9px;
+  }
+
+
+  .tv-programacao-status {
+    left: 9px;
+    right: 9px;
+    bottom: 9px;
+  }
+
+
+  .tv-status,
+  .tv-posicao {
+    min-height: 27px;
+
+    padding:
+      5px 9px;
+
+    font-size: 9px;
+  }
+
+
+  .painel-embarques {
+    padding: 12px;
+
+    border-radius: 18px;
+  }
+
+
+  .painel-embarques-topo h2 {
+    font-size: 16px;
+  }
+
+
+  .cartao-destaque .embarque-destino {
+    font-size: 17px;
+  }
+
+
+  .ticker-conteudo {
+    gap: 13px;
+
+    font-size: 11px;
+  }
+
+
+  .rodape {
+    justify-content: center;
+
+    text-align: center;
+  }
+}
+
+
+/* ---------------------------------------------------------
+   TELAS MUITO PEQUENAS
+--------------------------------------------------------- */
+
+@media (max-width: 430px) {
+  .header-logo > img {
+    width: 155px;
+  }
+
+
+  .header-hora {
+    font-size: 21px;
+  }
+
+
+  .header-informacoes {
+    gap: 10px;
+  }
+
+
+  .area-principal {
+    grid-template-rows:
+      minmax(320px, 44vh)
+      minmax(380px, auto);
+  }
+
+
+  .tv-programacao-status {
+    align-items: flex-end;
+  }
+
+
+  .tv-status {
+    max-width: 190px;
+  }
+
+
+  .painel-embarques-topo {
+    align-items: flex-start;
+  }
+
+
+  .painel-embarques-topo h2 {
+    font-size: 15px;
+  }
+
+
+  .cartao-embarque {
+    padding: 10px;
+  }
+
+
+  .embarque-destino {
+    font-size: 14px;
+  }
+
+
+  .cartao-destaque .embarque-destino {
+    font-size: 16px;
+  }
+
+
+  .embarque-horario {
+    font-size: 13px;
+  }
+}
+
+
+/* =========================================================
+   ANIMAÇÃO DO TICKER
+========================================================= */
+
+@keyframes moverTicker {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-100%);
+  }
+}
+/* =========================================================
+   CONECTAFÁCIL TV INDOOR
+   APP.CSS — PARTE 4 DE 4
+
+   12. AJUSTES FINAIS DA TV
+   13. TELA CHEIA
+   14. DESEMPENHO E ACESSIBILIDADE
+   15. CORREÇÕES DE SEGURANÇA
+========================================================= */
+
+
+/* =========================================================
+   12. AJUSTES FINAIS DA TV
+========================================================= */
+
+/*
+  Remove somente a placa branca com a pequena logo
+  que aparecia no centro durante a programação.
+
+  A logo da animação de abertura continua funcionando.
+*/
+
+.tv-apresentacao-logo,
+.tv-logo {
+  display: none;
+}
+
+
+/*
+  Reorganiza os textos depois da retirada da placa branca.
+*/
+
+.tv-apresentacao h1 {
+  margin-top: 0;
+}
+
+
+.tv-apresentacao p {
+  margin-top: 10px;
+}
+
+
+/*
+  Mantém a apresentação central dentro da área da TV.
+*/
+
+.tv-apresentacao {
+  max-width: 100%;
+
+  overflow: hidden;
+}
+
+
+/*
+  Evita que textos centrais ultrapassem a tela.
+*/
+
+.tv-apresentacao h1,
+.tv-apresentacao p {
+  width: 100%;
+
+  overflow-wrap: anywhere;
+}
+
+
+/*
+  Imagens horizontais preenchem a tela.
+*/
+
+.tv-imagem-horizontal {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+}
+
+
+/*
+  Imagens verticais aparecem inteiras,
+  com o fundo desfocado atrás.
+*/
+
+.tv-imagem-vertical {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  object-position: center;
+
+  padding: 8px;
+}
+
+
+/*
+  Vídeos aparecem inteiros sem deformação.
+*/
+
+.tv-video {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  object-position: center;
+
+  background: #000000;
+}
+
+
+/*
+  Impede imagens e vídeos de ultrapassarem a TV.
+*/
+
+.tv-midia,
+.tv-imagem,
+.tv-video {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+
+/*
+  Mantém a barra de progresso acima da mídia.
+*/
+
+.tv-progresso {
+  pointer-events: none;
+}
+
+
+/*
+  Melhora a leitura das informações inferiores.
+*/
+
+.tv-status,
+.tv-posicao {
+  text-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.8);
+}
+
+
+/*
+  Esconde o contador quando existir somente
+  uma mídia na programação.
+*/
+
+.tv-posicao:empty {
+  display: none;
+}
+
+
+/* =========================================================
+   13. TELA CHEIA
+========================================================= */
+
+:fullscreen .aplicativo {
+  width: 100vw;
+  height: 100vh;
+  min-height: 100vh;
+
+  overflow: hidden;
+}
+
+
+:-webkit-full-screen .aplicativo {
+  width: 100vw;
+  height: 100vh;
+  min-height: 100vh;
+
+  overflow: hidden;
+}
+
+
+:fullscreen .area-principal,
+:-webkit-full-screen .area-principal {
+  min-height: 0;
+}
+
+
+:fullscreen .tv,
+:-webkit-full-screen .tv {
+  width: 100%;
+  height: 100%;
+}
+
+
+/*
+  Em telas grandes, o painel lateral ganha
+  largura proporcional sem apertar a TV.
+*/
+
+@media (min-width: 1500px) {
+  .area-principal {
+    grid-template-columns:
+      minmax(0, 1fr)
+      390px;
+
+    gap: 18px;
+
+    padding: 18px;
+  }
+
+
+  .painel-embarques {
+    padding: 19px;
+  }
+
+
+  .painel-embarques-topo h2 {
+    font-size: 21px;
+  }
+
+
+  .cartao-destaque .embarque-destino {
+    font-size: 21px;
+  }
+
+
+  .embarque-destino {
+    max-width: 265px;
+
+    font-size: 18px;
+  }
+}
+
+
+/*
+  Ajustes para televisores Full HD.
+*/
+
+@media (min-width: 1800px) {
+  .header-premium {
+    flex-basis: 94px;
+
+    padding:
+      0 34px;
+  }
+
+
+  .header-logo > img {
+    width: 220px;
+    height: 72px;
+  }
+
+
+  .header-sistema {
+    font-size: 16px;
+  }
+
+
+  .header-titulos small {
+    font-size: 12px;
+  }
+
+
+  .header-chip {
+    min-height: 42px;
+
+    padding:
+      0 22px;
+
+    font-size: 14px;
+  }
+
+
+  .header-hora {
+    font-size: 33px;
+  }
+
+
+  .header-data,
+  .header-clima,
+  .header-online {
+    font-size: 13px;
+  }
+
+
+  .painel-controle {
+    padding:
+      13px 22px;
+  }
+
+
+  .campo-controle,
+  .botao-controle {
+    height: 47px;
+    min-height: 47px;
+
+    font-size: 14px;
+  }
+
+
+  .area-principal {
+    grid-template-columns:
+      minmax(0, 1fr)
+      420px;
+
+    gap: 20px;
+
+    padding: 20px;
+  }
+
+
+  .painel-embarques {
+    padding: 21px;
+  }
+
+
+  .painel-embarques-topo h2 {
+    font-size: 23px;
+  }
+
+
+  .painel-legenda {
+    font-size: 11px;
+  }
+
+
+  .painel-contador {
+    min-width: 44px;
+    height: 44px;
+
+    flex-basis: 44px;
+
+    font-size: 18px;
+  }
+
+
+  .cartao-embarque {
+    min-height: 88px;
+
+    padding: 15px;
+  }
+
+
+  .cartao-destaque {
+    min-height: 118px;
+  }
+
+
+  .cartao-destaque .embarque-destino {
+    font-size: 23px;
+  }
+
+
+  .embarque-destino {
+    max-width: 290px;
+
+    font-size: 19px;
+  }
+
+
+  .embarque-horario {
+    font-size: 18px;
+  }
+
+
+  .ticker {
+    flex-basis: 46px;
+  }
+
+
+  .ticker-conteudo {
+    font-size: 15px;
+  }
+
+
+  .rodape {
+    flex-basis: 38px;
+
+    font-size: 11px;
+  }
+}
+
+
+/* =========================================================
+   14. DESEMPENHO E ACESSIBILIDADE
+========================================================= */
+
+/*
+  Reduz animações quando o aparelho ou navegador
+  solicitar menos movimento.
+*/
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+
+    transition-duration: 0.01ms !important;
+  }
+
+
+  .ticker-conteudo {
+    animation:
+      moverTicker 45s linear infinite !important;
+  }
+}
+
+
+/*
+  Reduz efeitos pesados em dispositivos mais fracos.
+*/
+
+@media (max-width: 720px) {
+  .tv::after {
+    display: none;
+  }
+
+
+  .tv-fundo-desfocado {
+    filter:
+      blur(22px)
+      brightness(0.55)
+      saturate(1.12);
+  }
+
+
+  .tv,
+  .painel-embarques {
+    box-shadow:
+      0 15px 35px rgba(0, 0, 0, 0.36);
+  }
+
+
+  .tv-status,
+  .tv-posicao {
+    backdrop-filter: blur(6px);
+  }
+}
+
+
+/* =========================================================
+   15. CORREÇÕES DE SEGURANÇA
+========================================================= */
+
+/*
+  Evita que qualquer elemento interno aumente
+  a largura da página.
+*/
+
+.aplicativo,
+.header-premium,
+.painel-controle,
+.area-principal,
+.tv,
+.tv-conteudo,
+.painel-embarques,
+.ticker,
+.rodape {
+  max-width: 100%;
+}
+
+
+/*
+  Mantém todos os itens do grid dentro de suas áreas.
+*/
+
+.header-logo,
+.header-direita,
+.controle-arquivos,
+.controle-embarque,
+.tv,
+.painel-embarques {
+  min-width: 0;
+}
+
+
+/*
+  Evita barra horizontal indesejada.
+*/
+
+html,
+body,
+#root {
+  overflow-x: hidden;
+}
+
+
+/*
+  Mantém a área principal sem ultrapassar
+  o espaço vertical disponível no computador.
+*/
+
+@media (min-width: 981px) {
+  .area-principal {
+    min-height: 0;
+  }
+
+
+  .tv,
+  .painel-embarques {
+    min-height: 0;
+  }
+}
+
+
+/*
+  Ajuste final para notebook com pouca altura.
+*/
+
+@media (min-width: 981px) and (max-height: 750px) {
+  .header-premium {
+    flex-basis: 72px;
+  }
+
+
+  .header-logo > img {
+    height: 52px;
+  }
+
+
+  .painel-controle {
+    padding:
+      7px 12px;
+  }
+
+
+  .campo-controle,
+  .botao-controle {
+    height: 38px;
+    min-height: 38px;
+  }
+
+
+  .area-principal {
+    gap: 10px;
+
+    padding: 10px;
+  }
+
+
+  .painel-embarques {
+    padding: 12px;
+  }
+
+
+  .painel-embarques-topo {
+    padding-bottom: 9px;
+  }
+
+
+  .lista-embarques {
+    gap: 8px;
+
+    margin-top: 9px;
+  }
+
+
+  .cartao-embarque {
+    min-height: 67px;
+
+    padding: 9px 11px;
+  }
+
+
+  .cartao-destaque {
+    min-height: 89px;
+  }
+
+
+  .painel-embarques-rodape {
+    margin-top: 8px;
+    padding-top: 8px;
+  }
+
+
+  .ticker {
+    flex-basis: 34px;
+  }
+
+
+  .rodape {
+    flex-basis: 28px;
+  }
+}
+
+
+/*
+  Ajuste extra para telas muito baixas.
+*/
+
+@media (min-width: 981px) and (max-height: 620px) {
+  .header-premium {
+    flex-basis: 64px;
+  }
+
+
+  .header-logo > img {
+    width: 140px;
+    height: 46px;
+  }
+
+
+  .header-chip {
+    min-height: 30px;
+  }
+
+
+  .header-hora {
+    font-size: 22px;
+  }
+
+
+  .painel-controle {
+    padding:
+      6px 10px;
+  }
+
+
+  .campo-controle,
+  .botao-controle {
+    height: 35px;
+    min-height: 35px;
+  }
+
+
+  .area-principal {
+    padding: 8px;
+    gap: 8px;
+  }
+
+
+  .ticker {
+    flex-basis: 31px;
+  }
+
+
+  .rodape {
+    flex-basis: 25px;
+  }
+}
+
+
+/*
+  A logo branca permanece visível somente
+  durante a animação de abertura.
+*/
+
+.tv-abertura-logo {
+  display: flex;
+}
+/* =========================================================
+   CONECTAFÁCIL CONTROL CENTER
+========================================================= */
+
+.control-layout {
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+
+  background: #071321;
+  color: #ffffff;
+}
+
+/* SIDEBAR */
+
+.control-sidebar {
+  width: 250px;
+  min-width: 250px;
+  height: 100vh;
+
+  position: sticky;
+  top: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  background:
+    linear-gradient(
+      180deg,
+      #071321 0%,
+      #0b1f36 100%
+    );
+
+  border-right: 1px solid
+    rgba(255, 255, 255, 0.08);
+
+  padding: 22px 16px;
+}
+
+.control-sidebar-topo {
+  margin-bottom: 26px;
+}
+
+.control-sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.control-sidebar-logo-icone {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #0d6efd,
+      #00c8ff
+    );
+
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 900;
+}
+
+.control-sidebar-logo > div:last-child {
+  display: flex;
+  flex-direction: column;
+}
+
+.control-sidebar-logo strong {
+  font-size: 17px;
+}
+
+.control-sidebar-logo span {
+  color: #8aa4c3;
+  font-size: 12px;
+}
+
+.control-sidebar-status {
+  margin-top: 18px;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 9px 11px;
+
+  border-radius: 10px;
+
+  background:
+    rgba(16, 185, 129, 0.08);
+
+  color: #9ff6c9;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.control-status-ponto {
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  background: #26e07f;
+
+  box-shadow:
+    0 0 10px
+    rgba(38, 224, 127, 0.75);
+}
+
+/* MENU */
+
+.control-sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+
+  flex: 1;
+}
+
+.control-menu-item {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 12px 14px;
+
+  border: 0;
+  border-radius: 10px;
+
+  background: transparent;
+
+  color: #c7d5e7;
+
+  font-size: 16px;
+  font-weight: 700;
+
+  text-align: left;
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.control-menu-item:hover {
+  background:
+    rgba(255, 255, 255, 0.06);
+
+  color: #ffffff;
+
+  transform: translateX(2px);
+}
+
+.control-menu-item-ativo {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(37, 99, 235, 0.28),
+      rgba(0, 200, 255, 0.12)
+    );
+
+  color: #ffffff;
+
+  box-shadow:
+    inset 3px 0 0 #1d8cff;
+}
+
+.control-menu-icone {
+  width: 24px;
+
+  display: flex;
+  justify-content: center;
+
+  font-size: 19px;
+}
+
+.control-sidebar-rodape {
+  display: flex;
+  flex-direction: column;
+
+  padding-top: 16px;
+
+  border-top: 1px solid
+    rgba(255, 255, 255, 0.08);
+}
+
+.control-sidebar-rodape strong {
+  font-size: 13px;
+}
+
+.control-sidebar-rodape span {
+  margin-top: 3px;
+
+  color: #7891ad;
+  font-size: 11px;
+}
+
+/* ÁREA PRINCIPAL */
+
+.control-layout-principal {
+  min-width: 0;
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+}
+
+/* HEADER NOVO */
+
+.control-header {
+  min-height: 82px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 16px 24px;
+
+  background:
+    rgba(8, 25, 45, 0.96);
+
+  border-bottom: 1px solid
+    rgba(255, 255, 255, 0.08);
+}
+
+.control-header-titulo h1 {
+  margin: 0;
+
+  font-size: 24px;
+  line-height: 1.1;
+}
+
+.control-header-titulo p {
+  margin-top: 5px;
+
+  color: #8ca7c5;
+  font-size: 13px;
+}
+
+.control-header-direita {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.control-header-status {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  color: #a5f3c8;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.control-header-data {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.control-header-data strong {
+  font-size: 16px;
+}
+
+.control-header-data span {
+  color: #8ca7c5;
+  font-size: 11px;
+}
+
+.control-header-usuario {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding-left: 16px;
+
+  border-left: 1px solid
+    rgba(255, 255, 255, 0.1);
+}
+
+.control-header-avatar {
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #1976ff,
+      #1cd3ff
+    );
+
+  font-weight: 900;
+}
+
+.control-header-usuario > div:last-child {
+  display: flex;
+  flex-direction: column;
+}
+
+.control-header-usuario strong {
+  font-size: 12px;
+}
+
+.control-header-usuario span {
+  color: #8ca7c5;
+  font-size: 10px;
+}
+
+/* CONTEÚDO */
+
+.control-conteudo {
+  min-width: 0;
+  flex: 1;
+
+  overflow: auto;
+
+  background: #081624;
+}
+
+.control-conteudo > .aplicativo {
+  width: 100%;
+  min-height: 100%;
+}
+
+/* RESPONSIVO */
+
+@media (max-width: 1000px) {
+  .control-sidebar {
+    width: 210px;
+    min-width: 210px;
+  }
+
+  .control-header-direita {
+    gap: 10px;
+  }
+
+  .control-header-status {
+    display: none;
+  }
+}
+/* =========================================================
+   BIBLIOTECA DE MÍDIAS
+========================================================= */
+
+.biblioteca-resumo-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  padding: 18px;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #0b1b2e,
+      #0d223b
+    );
+
+  box-shadow:
+    0 14px 30px rgba(0, 0, 0, 0.18);
+}
+
+.biblioteca-resumo-card svg {
+  color: #38bdf8;
+}
+
+.biblioteca-resumo-card > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.biblioteca-resumo-card strong {
+  font-size: 26px;
+  color: #ffffff;
+}
+
+.biblioteca-resumo-card span {
+  margin-top: 2px;
+
+  color: #8fa8c3;
+  font-size: 12px;
+}
+
+.biblioteca-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 18px;
+}
+
+.biblioteca-card {
+  overflow: hidden;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+
+  background: #0b1b2e;
+
+  box-shadow:
+    0 16px 32px rgba(0, 0, 0, 0.18);
+}
+
+.biblioteca-preview {
+  position: relative;
+
+  width: 100%;
+  aspect-ratio: 16 / 9;
+
+  overflow: hidden;
+
+  background: #020914;
+}
+
+.biblioteca-preview img,
+.biblioteca-preview video {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+}
+
+.biblioteca-tipo {
+  position: absolute;
+
+  left: 10px;
+  bottom: 10px;
+
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 7px 10px;
+
+  border-radius: 999px;
+
+  background:
+    rgba(3, 13, 27, 0.82);
+
+  color: #ffffff;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  backdrop-filter: blur(8px);
+}
+
+.biblioteca-card-conteudo {
+  padding: 14px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.biblioteca-card-conteudo > strong {
+  overflow: hidden;
+
+  color: #ffffff;
+
+  font-size: 15px;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.biblioteca-card-conteudo > span {
+  margin-top: 4px;
+
+  color: #8fa8c3;
+  font-size: 12px;
+}
+
+.biblioteca-card-acoes {
+  margin-top: 14px;
+
+  display: flex;
+  gap: 8px;
+}
+
+.biblioteca-card-acoes button {
+  min-height: 36px;
+
+  border: 0;
+  border-radius: 9px;
+
+  cursor: pointer;
+}
+
+.biblioteca-card-acoes button:first-child {
+  flex: 1;
+
+  background:
+    linear-gradient(
+      135deg,
+      #1687ff,
+      #625cff
+    );
+
+  color: #ffffff;
+
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.biblioteca-card-acoes button:last-child {
+  width: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background:
+    rgba(239, 68, 68, 0.12);
+
+  color: #ff7c7c;
+}
+
+@media (max-width: 1200px) {
+  .biblioteca-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .biblioteca-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* =========================================================
+   DA SORTE — CONECTAFÁCIL
+========================================================= */
+
+.dasorte-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.dasorte-hero {
+  padding: 32px;
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at top right, rgba(34, 197, 94, 0.22), transparent 35%),
+    linear-gradient(135deg, #071b13 0%, #0b1728 55%, #111827 100%);
+  border: 1px solid rgba(34, 197, 94, 0.18);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
+}
+
+.dasorte-kicker {
+  display: inline-block;
+  margin-bottom: 10px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: #86efac;
+}
+
+.dasorte-hero h1 {
+  margin: 0;
+  font-size: 34px;
+  color: #ffffff;
+}
+
+.dasorte-hero p {
+  margin: 12px 0 0;
+  max-width: 720px;
+  color: #cbd5e1;
+  line-height: 1.6;
+}
+
+.dasorte-cards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.dasorte-card {
+  padding: 22px;
+  border-radius: 22px;
+  background: #0d1b2a;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  color: #ffffff;
+}
+
+.dasorte-card-icone {
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  border-radius: 14px;
+  background: rgba(34, 197, 94, 0.12);
+  color: #86efac;
+}
+
+.dasorte-card span {
+  display: block;
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+.dasorte-card strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 28px;
+  color: #ffffff;
+}
+
+.dasorte-assinantes {
+  padding: 24px;
+  border-radius: 26px;
+  background: #0b1726;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.dasorte-assinantes-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.dasorte-assinantes-topo span {
+  color: #86efac;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.dasorte-assinantes-topo h2 {
+  margin: 6px 0 0;
+  color: #ffffff;
+}
+
+.dasorte-assinantes-topo button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 0;
+  border-radius: 14px;
+  padding: 12px 18px;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #ffffff;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.dasorte-vazio {
+  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 22px;
+  border: 1px dashed rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.02);
+  color: #94a3b8;
+}
+
+.dasorte-vazio svg {
+  margin-bottom: 14px;
+  color: #4ade80;
+}
+
+.dasorte-vazio strong {
+  color: #ffffff;
+  font-size: 18px;
+}
+
+.dasorte-vazio p {
+  margin: 8px 0 0;
+  max-width: 420px;
+  line-height: 1.6;
+}
+
+@media (max-width: 1000px) {
+  .dasorte-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .dasorte-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .dasorte-assinantes-topo {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .dasorte-assinantes-topo button {
+    justify-content: center;
+  }
+}
+/* =========================================================
+   DA SORTE — MODAL NOVO CLIENTE
+========================================================= */
+
+.dasorte-modal-fundo {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(8px);
+}
+
+.dasorte-modal {
+  width: min(760px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 28px;
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  background:
+    linear-gradient(180deg, #0b1726 0%, #08111d 100%);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+  padding: 24px;
+}
+
+.dasorte-modal-topo {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.dasorte-modal-topo span {
+  display: block;
+  margin-bottom: 6px;
+  color: #86efac;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+}
+
+.dasorte-modal-topo h2 {
+  margin: 0;
+  color: #ffffff;
+}
+
+.dasorte-modal-topo > button {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.dasorte-formulario {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.dasorte-formulario label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: #cbd5e1;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.dasorte-formulario input,
+.dasorte-formulario select {
+  width: 100%;
+  height: 48px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  background: #111c2c;
+  padding: 0 14px;
+  color: #ffffff;
+  outline: none;
+}
+
+.dasorte-formulario input:focus,
+.dasorte-formulario select:focus {
+  border-color: rgba(74, 222, 128, 0.7);
+}
+
+.dasorte-modal-acoes {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.dasorte-modal-acoes button {
+  min-width: 140px;
+  height: 46px;
+  border: 0;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #ffffff;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.dasorte-modal-acoes button.secundario {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  color: #cbd5e1;
+}
+
+@media (max-width: 640px) {
+  .dasorte-formulario {
+    grid-template-columns: 1fr;
+  }
+
+  .dasorte-modal-acoes {
+    flex-direction: column-reverse;
+  }
+
+  .dasorte-modal-acoes button {
+    width: 100%;
+  }
+}
+/* =========================================================
+   CADASTRO PÚBLICO — DA SORTE
+========================================================= */
+
+.cadastro-dasorte-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background:
+    radial-gradient(circle at top, rgba(34, 197, 94, 0.18), transparent 35%),
+    linear-gradient(180deg, #07110a 0%, #020403 100%);
+}
+
+.cadastro-dasorte-card {
+  width: min(760px, 100%);
+  padding: 28px;
+  border-radius: 30px;
+  background: rgba(8, 18, 13, 0.96);
+  border: 1px solid rgba(74, 222, 128, 0.18);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+  color: white;
+}
+
+.cadastro-dasorte-topo {
+  text-align: center;
+}
+
+.cadastro-dasorte-logo {
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 14px;
+  border-radius: 22px;
+  background: rgba(34, 197, 94, 0.14);
+  color: #86efac;
+  border: 1px solid rgba(74, 222, 128, 0.22);
+}
+
+.cadastro-dasorte-topo > span {
+  color: #86efac;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+}
+
+.cadastro-dasorte-topo h1 {
+  margin: 8px 0 0;
+  font-size: 34px;
+}
+
+.cadastro-dasorte-topo p {
+  max-width: 560px;
+  margin: 12px auto 0;
+  color: #94a3b8;
+  line-height: 1.6;
+}
+
+.cadastro-dasorte-beneficios {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 24px 0;
+}
+
+.cadastro-dasorte-beneficios span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.04);
+  color: #cbd5e1;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.cadastro-dasorte-formulario {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.cadastro-dasorte-formulario label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: #cbd5e1;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.cadastro-dasorte-formulario input {
+  height: 48px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #111c2c;
+  padding: 0 14px;
+  color: white;
+  outline: none;
+}
+
+.cadastro-dasorte-planos {
+  margin-top: 24px;
+}
+
+.cadastro-dasorte-planos h2 {
+  margin-bottom: 12px;
+  font-size: 18px;
+}
+
+.cadastro-dasorte-planos-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.cadastro-dasorte-planos-grid button {
+  position: relative;
+  min-height: 130px;
+  padding: 18px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.035);
+  color: white;
+  text-align: left;
+  cursor: pointer;
+}
+
+.cadastro-dasorte-planos-grid button.ativo {
+  border-color: rgba(74, 222, 128, 0.7);
+  background: rgba(34, 197, 94, 0.12);
+  box-shadow: 0 0 24px rgba(34, 197, 94, 0.08);
+}
+
+.cadastro-dasorte-planos-grid span,
+.cadastro-dasorte-planos-grid strong,
+.cadastro-dasorte-planos-grid small {
+  display: block;
+}
+
+.cadastro-dasorte-planos-grid strong {
+  margin-top: 8px;
+  font-size: 24px;
+  color: #86efac;
+}
+
+.cadastro-dasorte-planos-grid small {
+  margin-top: 6px;
+  color: #94a3b8;
+}
+
+.cadastro-dasorte-planos-grid svg {
+  position: absolute;
+  right: 14px;
+  top: 14px;
+  color: #4ade80;
+}
+
+.cadastro-dasorte-continuar {
+  width: 100%;
+  height: 54px;
+  margin-top: 22px;
+  border: 0;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: white;
+  font-weight: 900;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.cadastro-dasorte-aviso {
+  margin: 14px 0 0;
+  text-align: center;
+  color: #64748b;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+@media (max-width: 640px) {
+  .cadastro-dasorte-beneficios,
+  .cadastro-dasorte-formulario,
+  .cadastro-dasorte-planos-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cadastro-dasorte-card {
+    padding: 20px;
+  }
+}
+/* =========================================================
+   DA SORTE — LISTA DE ASSINANTES
+========================================================= */
+
+.dasorte-clientes-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.dasorte-cliente-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  padding: 18px 20px;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.dasorte-cliente-item > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.dasorte-cliente-item strong {
+  color: #ffffff;
+  font-size: 15px;
+}
+
+.dasorte-cliente-item span {
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+.dasorte-cliente-item > div:last-child {
+  text-align: right;
+}
+
+@media (max-width: 640px) {
+  .dasorte-cliente-item {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .dasorte-cliente-item > div:last-child {
+    text-align: left;
+  }
+}
+/* =========================================================
+   DA SORTE — STATUS DOS CLIENTES
+========================================================= */
+
+.dasorte-cliente-status {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.dasorte-cliente-status > span {
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+.dasorte-cliente-status strong {
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+}
+
+.status-ativo {
+  color: #4ade80;
+}
+
+.status-bloqueado {
+  color: #f87171;
+}
+
+.status-teste {
+  color: #facc15;
+}
+/* =========================================================
+   DA SORTE — AÇÕES DOS CLIENTES
+========================================================= */
+
+.dasorte-cliente-acoes {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dasorte-cliente-acoes button {
+  min-width: 88px;
+  height: 36px;
+  border: 0;
+  border-radius: 10px;
+  padding: 0 12px;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.dasorte-cliente-acoes button:nth-child(1) {
+  background: rgba(34, 197, 94, 0.16);
+  color: #4ade80;
+}
+
+.dasorte-cliente-acoes button:nth-child(2) {
+  background: rgba(250, 204, 21, 0.14);
+  color: #facc15;
+}
+
+.dasorte-cliente-acoes button:nth-child(3) {
+  background: rgba(248, 113, 113, 0.14);
+  color: #f87171;
+}
+
+.dasorte-cliente-acoes button:hover {
+  filter: brightness(1.15);
+}

@@ -1,0 +1,705 @@
+/* =========================================================
+   CONECTAFÁCIL CLOUD — COMPONENTES OFICIAIS
+========================================================= */
+
+:root {
+  --cf-cloud-blue: #35b8ff;
+  --cf-cloud-blue-strong: #178cff;
+  --cf-cloud-purple: #765cff;
+  --cf-cloud-green: #40e39c;
+  --cf-cloud-yellow: #ffbd69;
+  --cf-cloud-red: #ff667a;
+
+  --cf-cloud-text: #f4f8ff;
+  --cf-cloud-text-soft: #8da3bf;
+  --cf-cloud-text-muted: #607795;
+
+  --cf-cloud-border: rgba(255, 255, 255, 0.075);
+  --cf-cloud-background: rgba(10, 23, 41, 0.92);
+}
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.cf-cloud-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  min-width: 0;
+
+  border: 1px solid transparent;
+  border-radius: 13px;
+
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.cf-cloud-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.cf-cloud-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.cf-cloud-button:disabled {
+  opacity: 0.48;
+  cursor: not-allowed;
+}
+
+.cf-cloud-button-small {
+  min-height: 36px;
+  padding: 0 13px;
+
+  font-size: 10px;
+}
+
+.cf-cloud-button-medium {
+  min-height: 44px;
+  padding: 0 17px;
+}
+
+.cf-cloud-button-large {
+  min-height: 50px;
+  padding: 0 21px;
+
+  font-size: 13px;
+}
+
+.cf-cloud-button-full {
+  width: 100%;
+}
+
+.cf-cloud-button-primary {
+  background:
+    linear-gradient(
+      135deg,
+      var(--cf-cloud-blue),
+      var(--cf-cloud-purple)
+    );
+
+  box-shadow:
+    0 13px 28px rgba(40, 169, 255, 0.23),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22);
+}
+
+.cf-cloud-button-primary:hover:not(:disabled) {
+  box-shadow:
+    0 18px 35px rgba(40, 169, 255, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22);
+}
+
+.cf-cloud-button-secondary {
+  border-color: rgba(67, 196, 255, 0.17);
+
+  color: #6bd1ff;
+
+  background: rgba(40, 169, 255, 0.075);
+}
+
+.cf-cloud-button-secondary:hover:not(:disabled) {
+  border-color: rgba(67, 196, 255, 0.32);
+
+  background: rgba(40, 169, 255, 0.13);
+}
+
+.cf-cloud-button-ghost {
+  border-color: rgba(255, 255, 255, 0.08);
+
+  color: #a8bad0;
+
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.cf-cloud-button-ghost:hover:not(:disabled) {
+  border-color: rgba(255, 255, 255, 0.14);
+
+  color: #ffffff;
+
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.cf-cloud-button-success {
+  border-color: rgba(64, 227, 156, 0.16);
+
+  color: #68eab3;
+
+  background: rgba(64, 227, 156, 0.1);
+}
+
+.cf-cloud-button-danger {
+  border-color: rgba(255, 102, 122, 0.18);
+
+  color: #ff8292;
+
+  background: rgba(255, 102, 122, 0.1);
+}
+
+.cf-cloud-button-spinner {
+  animation: cfCloudSpin 0.8s linear infinite;
+}
+
+@keyframes cfCloudSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.cf-cloud-card {
+  position: relative;
+
+  overflow: hidden;
+
+  border: 1px solid var(--cf-cloud-border);
+  border-radius: 22px;
+
+  background:
+    radial-gradient(
+      circle at 0 0,
+      rgba(47, 182, 255, 0.055),
+      transparent 34%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(13, 28, 48, 0.93),
+      rgba(7, 16, 29, 0.98)
+    );
+
+  box-shadow:
+    0 22px 52px rgba(0, 0, 0, 0.27),
+    inset 0 1px 0 rgba(255, 255, 255, 0.045);
+
+  transition:
+    transform 0.24s ease,
+    border-color 0.24s ease,
+    box-shadow 0.24s ease;
+}
+
+.cf-cloud-card-padding-none {
+  padding: 0;
+}
+
+.cf-cloud-card-padding-small {
+  padding: 16px;
+}
+
+.cf-cloud-card-padding-normal {
+  padding: 23px;
+}
+
+.cf-cloud-card-padding-large {
+  padding: 30px;
+}
+
+.cf-cloud-card-hover:hover {
+  transform: translateY(-4px);
+
+  border-color: rgba(65, 199, 255, 0.2);
+
+  box-shadow:
+    0 28px 65px rgba(0, 0, 0, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.cf-cloud-card-blue {
+  border-color: rgba(53, 184, 255, 0.16);
+}
+
+.cf-cloud-card-purple {
+  border-color: rgba(118, 92, 255, 0.16);
+}
+
+.cf-cloud-card-green {
+  border-color: rgba(64, 227, 156, 0.15);
+}
+
+.cf-cloud-card-warning {
+  border-color: rgba(255, 189, 105, 0.16);
+}
+
+.cf-cloud-card-danger {
+  border-color: rgba(255, 102, 122, 0.17);
+}
+
+.cf-cloud-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+
+  margin-bottom: 20px;
+}
+
+.cf-cloud-card-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.cf-cloud-card-heading h3 {
+  margin: 0;
+
+  color: var(--cf-cloud-text);
+
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.cf-cloud-card-heading p {
+  margin: 6px 0 0;
+
+  color: var(--cf-cloud-text-muted);
+
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.cf-cloud-card-header-icon {
+  display: grid;
+  place-items: center;
+
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+
+  border: 1px solid rgba(64, 198, 255, 0.11);
+  border-radius: 13px;
+
+  color: #51caff;
+
+  background: rgba(40, 169, 255, 0.08);
+}
+
+.cf-cloud-card-content {
+  min-width: 0;
+}
+
+/* =========================================================
+   BADGE
+========================================================= */
+
+.cf-cloud-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  min-height: 27px;
+  padding: 0 9px;
+
+  border: 1px solid transparent;
+  border-radius: 999px;
+
+  font-size: 9px;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.cf-cloud-badge-neutral {
+  border-color: rgba(255, 255, 255, 0.075);
+
+  color: #91a5be;
+
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.cf-cloud-badge-blue {
+  border-color: rgba(53, 184, 255, 0.14);
+
+  color: #62ceff;
+
+  background: rgba(53, 184, 255, 0.09);
+}
+
+.cf-cloud-badge-purple {
+  border-color: rgba(118, 92, 255, 0.15);
+
+  color: #b19dff;
+
+  background: rgba(118, 92, 255, 0.1);
+}
+
+.cf-cloud-badge-success {
+  border-color: rgba(64, 227, 156, 0.15);
+
+  color: #65e9b0;
+
+  background: rgba(64, 227, 156, 0.09);
+}
+
+.cf-cloud-badge-warning {
+  border-color: rgba(255, 189, 105, 0.17);
+
+  color: #ffc879;
+
+  background: rgba(255, 189, 105, 0.1);
+}
+
+.cf-cloud-badge-danger {
+  border-color: rgba(255, 102, 122, 0.17);
+
+  color: #ff8796;
+
+  background: rgba(255, 102, 122, 0.1);
+}
+
+.cf-cloud-badge-dot {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: currentColor;
+
+  box-shadow: 0 0 9px currentColor;
+
+  animation: cfCloudBadgePulse 1.7s ease-in-out infinite;
+}
+
+@keyframes cfCloudBadgePulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.85);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.cf-cloud-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  min-height: 28px;
+  padding: 0 9px;
+
+  border: 1px solid transparent;
+  border-radius: 999px;
+
+  font-size: 9px;
+  font-weight: 850;
+  white-space: nowrap;
+}
+
+.cf-cloud-status i {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: currentColor;
+}
+
+.cf-cloud-status-online,
+.cf-cloud-status-active,
+.cf-cloud-status-paid {
+  border-color: rgba(64, 227, 156, 0.15);
+
+  color: #5fe8ac;
+
+  background: rgba(64, 227, 156, 0.09);
+}
+
+.cf-cloud-status-online i {
+  box-shadow: 0 0 9px rgba(64, 227, 156, 0.8);
+}
+
+.cf-cloud-status-offline,
+.cf-cloud-status-overdue {
+  border-color: rgba(255, 102, 122, 0.16);
+
+  color: #ff8090;
+
+  background: rgba(255, 102, 122, 0.1);
+}
+
+.cf-cloud-status-offline i {
+  box-shadow: 0 0 9px rgba(255, 102, 122, 0.7);
+}
+
+.cf-cloud-status-warning,
+.cf-cloud-status-pending {
+  border-color: rgba(255, 189, 105, 0.16);
+
+  color: #ffc476;
+
+  background: rgba(255, 189, 105, 0.09);
+}
+
+.cf-cloud-status-inactive {
+  border-color: rgba(255, 255, 255, 0.08);
+
+  color: #8295ad;
+
+  background: rgba(255, 255, 255, 0.045);
+}
+
+/* =========================================================
+   SECTION TITLE
+========================================================= */
+
+.cf-cloud-section-title {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 25px;
+
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.cf-cloud-section-title-main {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.cf-cloud-section-title-icon {
+  display: grid;
+  place-items: center;
+
+  width: 48px;
+  height: 48px;
+  flex: 0 0 auto;
+
+  border: 1px solid rgba(67, 199, 255, 0.14);
+  border-radius: 15px;
+
+  color: #51caff;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(40, 169, 255, 0.13),
+      rgba(118, 92, 255, 0.08)
+    );
+}
+
+.cf-cloud-section-eyebrow {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #4fc9ff;
+
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 1.8px;
+}
+
+.cf-cloud-section-title h1 {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: clamp(25px, 3vw, 34px);
+  font-weight: 850;
+  letter-spacing: -0.7px;
+}
+
+.cf-cloud-section-title p {
+  max-width: 700px;
+
+  margin: 8px 0 0;
+
+  color: #758ca8;
+
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.cf-cloud-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+
+  min-height: 240px;
+  padding: 30px;
+
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 22px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(12, 27, 46, 0.91),
+      rgba(7, 16, 29, 0.98)
+    );
+}
+
+.cf-cloud-loading-compact {
+  min-height: 90px;
+}
+
+.cf-cloud-loading-icon {
+  display: grid;
+  place-items: center;
+
+  width: 51px;
+  height: 51px;
+
+  border-radius: 16px;
+
+  color: #50c9ff;
+
+  background: rgba(40, 169, 255, 0.1);
+}
+
+.cf-cloud-loading-icon svg {
+  animation: cfCloudSpin 0.9s linear infinite;
+}
+
+.cf-cloud-loading strong {
+  display: block;
+
+  color: #edf6ff;
+
+  font-size: 13px;
+}
+
+.cf-cloud-loading p {
+  margin: 5px 0 0;
+
+  color: #667d98;
+
+  font-size: 10px;
+}
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.cf-cloud-empty-state {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
+  min-height: 315px;
+  padding: 40px 25px;
+
+  text-align: center;
+}
+
+.cf-cloud-empty-state-icon {
+  display: grid;
+  place-items: center;
+
+  width: 78px;
+  height: 78px;
+
+  border: 1px solid rgba(62, 195, 255, 0.14);
+  border-radius: 24px;
+
+  color: #54caff;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(40, 169, 255, 0.16),
+      rgba(40, 169, 255, 0.06)
+    );
+
+  box-shadow:
+    0 20px 45px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+
+.cf-cloud-empty-state h3 {
+  margin: 20px 0 0;
+
+  color: #f3f8ff;
+
+  font-size: 17px;
+}
+
+.cf-cloud-empty-state p {
+  max-width: 430px;
+
+  margin: 9px 0 22px;
+
+  color: #6e849f;
+
+  font-size: 11px;
+  line-height: 1.65;
+}
+
+/* =========================================================
+   RESPONSIVIDADE
+========================================================= */
+
+@media (max-width: 700px) {
+  .cf-cloud-section-title {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .cf-cloud-section-title-action {
+    width: 100%;
+  }
+
+  .cf-cloud-section-title-action .cf-cloud-button {
+    width: 100%;
+  }
+
+  .cf-cloud-card-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .cf-cloud-card-action {
+    width: 100%;
+  }
+}
+/* Melhorar leitura do painel */
+.cf-cloud-section-title p {
+  font-size: 16px !important;
+}
+.cf-tela-card-titulo h3 {
+  font-size: 20px !important;
+}
+
+.cf-tela-card-titulo p {
+  font-size: 14px !important;
+}
+
+.cf-tela-card-informacoes small {
+  font-size: 12px !important;
+}
+
+.cf-tela-card-informacoes strong {
+  font-size: 14px !important;
+}
