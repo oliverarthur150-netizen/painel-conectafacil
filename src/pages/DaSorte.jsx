@@ -399,7 +399,11 @@ if (!sessao) {
       <div className="dasorte-modal-topo">
         <div>
           <span>NOVO ASSINANTE</span>
-          <h2>Cadastrar cliente DA SORTE</h2>
+          <h2>
+  {clienteEditando
+    ? "Editar cliente DA SORTE"
+    : "Cadastrar cliente DA SORTE"}
+</h2>
         </div>
 
         <button
@@ -485,11 +489,11 @@ if (!sessao) {
           Cancelar
         </button>
 
-        <button
+       <button
   type="button"
   onClick={salvarCliente}
 >
-  Salvar cliente
+  {clienteEditando ? "Salvar alterações" : "Salvar cliente"}
 </button>
       </div>
     </div>
