@@ -22,6 +22,7 @@ const [novoPlano, setNovoPlano] = useState("")
 const [novaDataAtivacao, setNovaDataAtivacao] = useState("")
 const [novoVencimento, setNovoVencimento] = useState("")
 const [novoStatus, setNovoStatus] = useState("ativo")
+const [clienteEditando, setClienteEditando] = useState(null)
 useEffect(() => {
   supabase.auth.getSession().then(({ data }) => {
     setSessao(data.session)
@@ -179,18 +180,51 @@ async function salvarCliente() {
     return
   }
 
+  const dadosCliente = {
+    nome: novoNome.trim(),
+    whatsapp: novoWhatsapp.trim(),
+    plano: novoPlano,
+    data_ativacao: novaDataAtivacao,
+    vencimento: novoVencimento,
+    status: novoStatus,
+  }
+
+  if (clienteEditando) {
+    const { data, error } = await supabase
+      .from("dasorte_clientes")
+      .update(dadosCliente)
+      .eq("id", clienteEditando.id)
+      .select()
+      .single()
+
+    if (error) {
+      console.error("Erro ao editar cliente:", error)
+      alert("Não foi possível editar o cliente.")
+      return
+    }
+
+    setClientes((listaAtual) =>
+      listaAtual.map((cliente) =>
+        cliente.id === data.id ? data : cliente
+      )
+    )
+
+    setClienteEditando(null)
+    setNovoNome("")
+    setNovoWhatsapp("")
+    setNovoPlano("")
+    setNovaDataAtivacao("")
+    setNovoVencimento("")
+    setNovoStatus("ativo")
+    setMostrarFormulario(false)
+
+    alert("Cliente atualizado com sucesso!")
+    return
+  }
+
   const { data, error } = await supabase
     .from("dasorte_clientes")
-    .insert([
-      {
-        nome: novoNome.trim(),
-        whatsapp: novoWhatsapp.trim(),
-        plano: novoPlano,
-        data_ativacao: novaDataAtivacao,
-        vencimento: novoVencimento,
-        status: novoStatus,
-      },
-    ])
+    .insert([dadosCliente])
     .select()
     .single()
 
@@ -208,10 +242,21 @@ async function salvarCliente() {
   setNovaDataAtivacao("")
   setNovoVencimento("")
   setNovoStatus("ativo")
-
   setMostrarFormulario(false)
 
   alert("Cliente cadastrado com sucesso!")
+}
+function abrirEdicaoCliente(cliente) {
+  setClienteEditando(cliente)
+
+  setNovoNome(cliente.nome || "")
+  setNovoWhatsapp(cliente.whatsapp || "")
+  setNovoPlano(cliente.plano || "")
+  setNovaDataAtivacao(cliente.data_ativacao || "")
+  setNovoVencimento(cliente.vencimento || "")
+  setNovoStatus(cliente.status || "ativo")
+
+  setMostrarFormulario(true)
 }
 if (!sessao) {
   return (
@@ -498,11 +543,18 @@ if (!sessao) {
   </strong>
 </div>
        <div className="dasorte-cliente-acoes">
+        <button
+  type="button"
+  onClick={() => abrirEdicaoCliente(cliente)}
+>
+  Editar
+</button>
   <button
   type="button"
  onClick={() =>
   atualizarStatusCliente(cliente.id, "ativo")
 }
+
 >
   Ativar
 </button>
