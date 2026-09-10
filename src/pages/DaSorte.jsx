@@ -398,7 +398,9 @@ if (!sessao) {
     <div className="dasorte-modal">
       <div className="dasorte-modal-topo">
         <div>
-          <span>NOVO ASSINANTE</span>
+         <span>
+  {clienteEditando ? "EDITAR ASSINANTE" : "NOVO ASSINANTE"}
+</span>
           <h2>
   {clienteEditando
     ? "Editar cliente DA SORTE"
