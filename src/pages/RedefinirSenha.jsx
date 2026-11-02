@@ -12,12 +12,14 @@ export default function RedefinirSenha() {
 
   useEffect(() => {
     let ativo = true;
+    let recuperacaoDetectada = false;
 
     const { data: listener } = supabase.auth.onAuthStateChange(
       (evento) => {
         if (!ativo) return;
 
         if (evento === "PASSWORD_RECOVERY") {
+          recuperacaoDetectada = true;
           setAutorizado(true);
           setMensagem("");
           setCarregando(false);
@@ -40,9 +42,7 @@ export default function RedefinirSenha() {
           fragmento.get("error_description");
 
         if (erroLink) {
-          throw new Error(
-            decodeURIComponent(erroLink.replace(/\+/g, " "))
-          );
+          throw new Error(erroLink);
         }
 
         const codigo = parametros.get("code");
@@ -57,21 +57,16 @@ export default function RedefinirSenha() {
 
           if (error) throw error;
 
+          recuperacaoDetectada = true;
           if (ativo) setAutorizado(true);
         } else if (codigo) {
           const { data, error } =
-            await supabase.auth.getSession();
+            await supabase.auth.exchangeCodeForSession(codigo);
 
           if (error) throw error;
 
           if (data.session) {
-            if (ativo) setAutorizado(true);
-          } else {
-            const resultado =
-              await supabase.auth.exchangeCodeForSession(codigo);
-
-            if (resultado.error) throw resultado.error;
-
+            recuperacaoDetectada = true;
             if (ativo) setAutorizado(true);
           }
         } else if (
@@ -83,13 +78,12 @@ export default function RedefinirSenha() {
           if (error) throw error;
 
           if (data.session) {
+            recuperacaoDetectada = true;
             if (ativo) setAutorizado(true);
-          } else if (ativo) {
-            setMensagem(
-              "Não foi possível validar o link. Solicite um novo e-mail de recuperação."
-            );
           }
-        } else if (ativo) {
+        }
+
+        if (ativo && !recuperacaoDetectada) {
           setMensagem(
             "Abra esta página pelo link de recuperação enviado ao seu e-mail."
           );
@@ -154,7 +148,8 @@ export default function RedefinirSenha() {
       await supabase.auth.signOut();
     } catch (erro) {
       setMensagem(
-        erro.message || "Não foi possível alterar a senha."
+        erro.message ||
+          "Não foi possível alterar a senha."
       );
     } finally {
       setSalvando(false);
@@ -229,16 +224,36 @@ export default function RedefinirSenha() {
             Verificando link de recuperação...
           </p>
         ) : concluido ? (
-          <p
-            style={{
-              color: "#67e8a5",
-              textAlign: "center",
-            }}
-          >
-            Sua senha foi atualizada com sucesso.
-            Você já pode utilizá-la para entrar
-            no painel administrativo.
-          </p>
+          <div style={{ textAlign: "center" }}>
+            <h2 style={{ color: "#67e8a5" }}>
+              Senha atualizada!
+            </h2>
+
+            <p>
+              Sua senha foi alterada com sucesso.
+            </p>
+
+            <p>
+              Você já pode entrar no painel
+              administrativo com a nova senha.
+            </p>
+
+            <a
+              href="/cloud/"
+              style={{
+                display: "inline-block",
+                marginTop: "20px",
+                padding: "12px 20px",
+                borderRadius: "9px",
+                background: "#f97316",
+                color: "#ffffff",
+                textDecoration: "none",
+                fontWeight: "bold",
+              }}
+            >
+              Voltar ao painel
+            </a>
+          </div>
         ) : autorizado ? (
           <form onSubmit={salvarNovaSenha}>
             <label htmlFor="novaSenha">
@@ -251,4 +266,83 @@ export default function RedefinirSenha() {
               autoComplete="new-password"
               value={novaSenha}
               onChange={(evento) =>
-                setNovaSenha(evento.target.v
+                setNovaSenha(evento.target.value)
+              }
+              placeholder="Digite sua nova senha"
+              minLength={8}
+              required
+              style={estiloInput}
+            />
+
+            <label htmlFor="confirmarSenha">
+              Confirmar nova senha
+            </label>
+
+            <input
+              id="confirmarSenha"
+              type="password"
+              autoComplete="new-password"
+              value={confirmarSenha}
+              onChange={(evento) =>
+                setConfirmarSenha(evento.target.value)
+              }
+              placeholder="Repita sua nova senha"
+              minLength={8}
+              required
+              style={estiloInput}
+            />
+
+            <button
+              type="submit"
+              disabled={salvando}
+              style={{
+                width: "100%",
+                padding: "14px",
+                border: "none",
+                borderRadius: "9px",
+                background: salvando
+                  ? "#64748b"
+                  : "#f97316",
+                color: "#ffffff",
+                fontSize: "16px",
+                fontWeight: "bold",
+                cursor: salvando
+                  ? "not-allowed"
+                  : "pointer",
+              }}
+            >
+              {salvando
+                ? "Salvando..."
+                : "Alterar minha senha"}
+            </button>
+          </form>
+        ) : (
+          <div style={{ textAlign: "center" }}>
+            <h2 style={{ color: "#fbbf24" }}>
+              Link não autorizado
+            </h2>
+
+            <p>
+              Solicite um novo link de recuperação
+              de senha.
+            </p>
+          </div>
+        )}
+
+        {mensagem && !concluido && (
+          <p
+            role="alert"
+            style={{
+              marginTop: "20px",
+              color: "#fca5a5",
+              textAlign: "center",
+              fontSize: "14px",
+            }}
+          >
+            {mensagem}
+          </p>
+        )}
+      </section>
+    </main>
+  );
+}
