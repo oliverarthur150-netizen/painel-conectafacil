@@ -22,10 +22,15 @@ import Relatorios from "./pages/Relatorios";
 import Usuarios from "./pages/Usuarios";
 import Configuracoes from "./pages/Configuracoes";
 import DaSorte from "./pages/DaSorte";
+import RedefinirSenha from "./pages/RedefinirSenha";
 export default function AppCloud() {
   return (
     <BrowserRouter basename="/cloud">
       <Routes>
+        <Route
+  path="redefinir-senha"
+  element={<RedefinirSenha />}
+/>
         <Route element={<MainLayout />}>
           <Route index element={<Dashboard />} />
 
