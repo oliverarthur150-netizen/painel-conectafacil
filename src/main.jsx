@@ -1,13 +1,16 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-
 import "./index.css";
 
 import App from "./App.jsx";
 import AppCloud from "./AppCloud.jsx";
 import CadastroDaSorte from "./pages/CadastroDaSorte.jsx";
+import RedefinirSenha from "./pages/RedefinirSenha.jsx";
 
-const caminhoAtual = window.location.pathname;
+const caminhoAtual = window.location.pathname.replace(/\/+$/, "") || "/";
+
+const abrirRedefinirSenha =
+  caminhoAtual === "/cloud/redefinir-senha";
 
 const abrirCloud =
   caminhoAtual === "/cloud" ||
@@ -19,11 +22,12 @@ const abrirCadastroDaSorte =
 
 let aplicativo = <App />;
 
-if (abrirCloud) {
+// A recuperação de senha tem prioridade sobre o Dashboard.
+if (abrirRedefinirSenha) {
+  aplicativo = <RedefinirSenha />;
+} else if (abrirCloud) {
   aplicativo = <AppCloud />;
-}
-
-if (abrirCadastroDaSorte) {
+} else if (abrirCadastroDaSorte) {
   aplicativo = <CadastroDaSorte />;
 }
 
