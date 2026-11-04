@@ -12,91 +12,148 @@ export default function RedefinirSenha() {
 
   useEffect(() => {
     let ativo = true;
-    let recuperacaoDetectada = false;
+    let recuperacaoConfirmada = false;
 
-    const { data: listener } = supabase.auth.onAuthStateChange(
-      (evento) => {
+    function liberarRecuperacao() {
+      recuperacaoConfirmada = true;
+
+      if (!ativo) return;
+
+      setAutorizado(true);
+      setMensagem("");
+      setCarregando(false);
+    }
+
+    const { data: listener } =
+      supabase.auth.onAuthStateChange((evento) => {
         if (!ativo) return;
 
         if (evento === "PASSWORD_RECOVERY") {
-          recuperacaoDetectada = true;
-          setAutorizado(true);
-          setMensagem("");
-          setCarregando(false);
+          liberarRecuperacao();
         }
-      }
-    );
+      });
 
     async function verificarLink() {
       try {
-        const parametros = new URLSearchParams(
-          window.location.search
-        );
+        const url = new URL(window.location.href);
+
+        const parametros = url.searchParams;
 
         const fragmento = new URLSearchParams(
-          window.location.hash.substring(1)
+          url.hash.substring(1)
         );
 
-        const erroLink =
+        const erro =
           parametros.get("error_description") ||
           fragmento.get("error_description");
 
-        if (erroLink) {
-          throw new Error(erroLink);
+        if (erro) {
+          throw new Error(erro);
         }
 
-        const codigo = parametros.get("code");
-        const token = parametros.get("token_hash");
-        const tipo = parametros.get("type");
+        const tokenHash =
+          parametros.get("token_hash");
 
-        if (token && tipo === "recovery") {
-          const { error } = await supabase.auth.verifyOtp({
-            token_hash: token,
-            type: "recovery",
-          });
+        const codigo =
+          parametros.get("code");
+
+        const tipo =
+          parametros.get("type") ||
+          fragmento.get("type");
+
+        const accessToken =
+          fragmento.get("access_token");
+
+        const refreshToken =
+          fragmento.get("refresh_token");
+
+        // Recuperação usando token_hash.
+        if (tokenHash && tipo === "recovery") {
+          const { error } =
+            await supabase.auth.verifyOtp({
+              token_hash: tokenHash,
+              type: "recovery",
+            });
 
           if (error) throw error;
 
-          recuperacaoDetectada = true;
-          if (ativo) setAutorizado(true);
-        } else if (codigo) {
+          liberarRecuperacao();
+        }
+
+        // Recuperação usando código PKCE.
+        else if (codigo) {
           const { data, error } =
-            await supabase.auth.exchangeCodeForSession(codigo);
+            await supabase.auth.exchangeCodeForSession(
+              codigo
+            );
 
           if (error) throw error;
 
-          if (data.session) {
-            recuperacaoDetectada = true;
-            if (ativo) setAutorizado(true);
+          if (
+            tipo === "recovery" &&
+            data.session
+          ) {
+            liberarRecuperacao();
+          } else {
+            throw new Error(
+              "Não foi possível confirmar que este código pertence a uma recuperação de senha."
+            );
           }
-        } else if (
-          fragmento.get("type") === "recovery"
+        }
+
+        // Recuperação usando tokens no fragmento.
+        else if (
+          tipo === "recovery" &&
+          accessToken &&
+          refreshToken
         ) {
           const { data, error } =
-            await supabase.auth.getSession();
+            await supabase.auth.setSession({
+              access_token: accessToken,
+              refresh_token: refreshToken,
+            });
 
           if (error) throw error;
 
-          if (data.session) {
-            recuperacaoDetectada = true;
-            if (ativo) setAutorizado(true);
+          if (!data.session) {
+            throw new Error(
+              "Não foi possível validar a sessão de recuperação."
+            );
           }
+
+          liberarRecuperacao();
         }
 
-        if (ativo && !recuperacaoDetectada) {
+        // O Supabase também pode emitir
+        // PASSWORD_RECOVERY automaticamente.
+        else if (!recuperacaoConfirmada) {
+          await new Promise((resolve) =>
+            setTimeout(resolve, 1200)
+          );
+        }
+
+        if (
+          ativo &&
+          !recuperacaoConfirmada
+        ) {
+          setAutorizado(false);
           setMensagem(
             "Abra esta página pelo link de recuperação enviado ao seu e-mail."
           );
         }
       } catch (erro) {
         if (ativo) {
+          setAutorizado(false);
+
           setMensagem(
             erro.message ||
               "O link de recuperação é inválido ou expirou."
           );
         }
       } finally {
-        if (ativo) setCarregando(false);
+        if (ativo) {
+          setCarregando(false);
+        }
       }
     }
 
@@ -104,6 +161,7 @@ export default function RedefinirSenha() {
 
     return () => {
       ativo = false;
+
       listener.subscription.unsubscribe();
     };
   }, []);
@@ -120,13 +178,15 @@ export default function RedefinirSenha() {
 
     if (novaSenha.length < 8) {
       setMensagem(
-        "A nova senha precisa ter pelo menos 8 caracteres."
+        "A senha precisa ter pelo menos 8 caracteres."
       );
       return;
     }
 
     if (novaSenha !== confirmarSenha) {
-      setMensagem("As duas senhas não são iguais.");
+      setMensagem(
+        "As duas senhas não são iguais."
+      );
       return;
     }
 
@@ -134,18 +194,19 @@ export default function RedefinirSenha() {
       setSalvando(true);
       setMensagem("");
 
-      const { error } = await supabase.auth.updateUser({
-        password: novaSenha,
-      });
+      const { error } =
+        await supabase.auth.updateUser({
+          password: novaSenha,
+        });
 
       if (error) throw error;
 
       setConcluido(true);
       setNovaSenha("");
       setConfirmarSenha("");
-      setMensagem("Senha alterada com sucesso!");
 
       await supabase.auth.signOut();
+
     } catch (erro) {
       setMensagem(
         erro.message ||
@@ -191,7 +252,8 @@ export default function RedefinirSenha() {
           borderRadius: "18px",
           background: "#142a46",
           color: "#ffffff",
-          boxShadow: "0 15px 45px rgba(0,0,0,0.35)",
+          boxShadow:
+            "0 15px 45px rgba(0,0,0,0.35)",
         }}
       >
         <div
@@ -234,8 +296,9 @@ export default function RedefinirSenha() {
             </p>
 
             <p>
-              Você já pode entrar no painel
-              administrativo com a nova senha.
+              Você já pode utilizar sua nova senha
+              quando o login administrativo
+              estiver ativado.
             </p>
 
             <a
