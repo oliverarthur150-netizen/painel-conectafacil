@@ -703,3 +703,137 @@
 .cf-tela-card-informacoes strong {
   font-size: 14px !important;
 }
+/* =========================================================
+   CONECTAFÁCIL CLOUD — NOVA IDENTIDADE VISUAL
+   AZUL PETRÓLEO / GRAFITE PREMIUM
+   Correção visual sem alterar funcionalidades
+========================================================= */
+
+/* FUNDO PRINCIPAL */
+.cf-v2-app {
+  background:
+    radial-gradient(
+      circle at 15% 5%,
+      rgba(48, 153, 219, 0.16),
+      transparent 35%
+    ),
+    linear-gradient(
+      145deg,
+      #203b57 0%,
+      #192f48 50%,
+      #14283f 100%
+    ) !important;
+}
+
+/* MENU LATERAL */
+.cf-v2-sidebar {
+  background:
+    linear-gradient(
+      180deg,
+      #25435f 0%,
+      #1e3853 55%,
+      #192f48 100%
+    ) !important;
+
+  border-right: 1px solid rgba(180, 215, 245, 0.18) !important;
+}
+
+/* ÁREA CENTRAL */
+.cf-v2-main {
+  background: transparent !important;
+}
+
+/* CABEÇALHO */
+.cf-v2-topbar {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(43, 72, 101, 0.97),
+      rgba(31, 55, 80, 0.97)
+    ) !important;
+
+  border-color: rgba(180, 215, 245, 0.19) !important;
+}
+
+/* CARDS OFICIAIS */
+.cf-cloud-card {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(43, 72, 101, 0.97),
+      rgba(31, 55, 80, 0.98)
+    ) !important;
+
+  border-color: rgba(180, 215, 245, 0.18) !important;
+
+  box-shadow:
+    0 16px 38px rgba(5, 18, 32, 0.20),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07) !important;
+}
+
+/* CARDS DO DASHBOARD */
+.dashboard-resumo-card,
+.card-dashboard {
+  background:
+    linear-gradient(
+      145deg,
+      #315675,
+      #24425f
+    ) !important;
+
+  border-color: rgba(180, 215, 245, 0.20) !important;
+}
+
+/* PAINÉIS INTERNOS */
+.dashboard-painel,
+.dashboard-painel-grade {
+  background:
+    linear-gradient(
+      145deg,
+      #2b4b69,
+      #213d59
+    ) !important;
+
+  border-color: rgba(180, 215, 245, 0.18) !important;
+}
+
+/* ÁREAS DE CONTEÚDO */
+.cf-v2-content {
+  background: transparent !important;
+}
+
+/* CAMPOS DE PESQUISA E FORMULÁRIOS */
+.cf-cloud-card input,
+.cf-cloud-card select,
+.cf-cloud-card textarea {
+  background-color: #203d59 !important;
+  border-color: rgba(180, 215, 245, 0.20) !important;
+  color: #ffffff !important;
+}
+
+/* TEXTOS */
+.cf-v2-app,
+.cf-cloud-card {
+  color: #f4f8ff;
+}
+
+/* MANTER OS ÍCONES COLORIDOS */
+.cf-v2-menu-icone svg,
+.cf-cloud-card-header-icon svg,
+.cf-cloud-section-title-icon svg {
+  opacity: 1 !important;
+}
+
+/* BORDAS E ACABAMENTO */
+.cf-v2-sidebar,
+.cf-v2-topbar,
+.cf-cloud-card {
+  backdrop-filter: blur(18px);
+}
+
+/* RESPONSIVIDADE PRESERVADA */
+@media (max-width: 920px) {
+  .cf-v2-main {
+    background: transparent !important;
+  }
+}
