@@ -1136,3 +1136,147 @@ button {
 .cf-v2-pagina-cabecalho {
   padding-top: 6px;
 }
+
+/* =====================================================
+   CONECTAFÁCIL CLOUD — VISUAL PREMIUM
+   AJUSTES DE FUNDO, MENU E ÍCONES
+===================================================== */
+
+:root {
+  --cf-v2-bg: #193650;
+  --cf-v2-bg-secundario: #21415d;
+  --cf-v2-painel: rgba(34, 65, 91, 0.92);
+  --cf-v2-painel-forte: rgba(24, 49, 73, 0.97);
+
+  --cf-v2-azul: #35b8ff;
+  --cf-v2-ciano: #55e2ff;
+  --cf-v2-roxo: #9275ff;
+  --cf-v2-verde: #43e9a3;
+  --cf-v2-laranja: #ffad55;
+}
+
+body {
+  background:
+    radial-gradient(
+      circle at 12% 5%,
+      rgba(53, 184, 255, 0.22),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 90% 10%,
+      rgba(118, 92, 255, 0.17),
+      transparent 35%
+    ),
+    linear-gradient(
+      145deg,
+      #193650,
+      #10263d,
+      #1c3854
+    );
+}
+
+.cf-v2-sidebar {
+  background:
+    radial-gradient(
+      circle at 0% 0%,
+      rgba(53, 184, 255, 0.20),
+      transparent 38%
+    ),
+    linear-gradient(
+      180deg,
+      #244761,
+      #193650,
+      #142d46
+    );
+}
+
+.cf-v2-topbar {
+  background:
+    linear-gradient(
+      120deg,
+      rgba(47, 91, 121, 0.92),
+      rgba(28, 55, 82, 0.95)
+    );
+
+  border-color: rgba(120, 205, 255, 0.20);
+}
+
+/* ÍCONES COLORIDOS DO MENU */
+
+.cf-v2-menu-lista > a:nth-child(1) .cf-v2-menu-icone {
+  color: #42c5ff;
+  background: rgba(66, 197, 255, 0.16);
+}
+
+.cf-v2-menu-lista > a:nth-child(2) .cf-v2-menu-icone {
+  color: #b18aff;
+  background: rgba(177, 138, 255, 0.16);
+}
+
+.cf-v2-menu-lista > a:nth-child(3) .cf-v2-menu-icone {
+  color: #43e9a3;
+  background: rgba(67, 233, 163, 0.16);
+}
+
+.cf-v2-menu-lista > a:nth-child(4) .cf-v2-menu-icone {
+  color: #53ddff;
+  background: rgba(83, 221, 255, 0.16);
+}
+
+.cf-v2-menu-lista > a:nth-child(5) .cf-v2-menu-icone {
+  color: #ffad55;
+  background: rgba(255, 173, 85, 0.16);
+}
+
+.cf-v2-menu-lista > a:nth-child(6) .cf-v2-menu-icone {
+  color: #69aaff;
+  background: rgba(105, 170, 255, 0.16);
+}
+
+.cf-v2-menu-lista > a:nth-child(7) .cf-v2-menu-icone {
+  color: #ffe078;
+  background: rgba(255, 224, 120, 0.16);
+}
+
+.cf-v2-menu-lista > a:nth-child(8) .cf-v2-menu-icone {
+  color: #ff86bb;
+  background: rgba(255, 134, 187, 0.16);
+}
+
+.cf-v2-menu-lista > a:nth-child(9) .cf-v2-menu-icone {
+  color: #c5d5e8;
+  background: rgba(197, 213, 232, 0.16);
+}
+
+/* CONFIGURAÇÕES */
+
+.cf-v2-sidebar-rodape > a .cf-v2-menu-icone {
+  color: #c5d5e8;
+  background: rgba(197, 213, 232, 0.14);
+}
+
+/* DESTAQUE DOS ÍCONES AO PASSAR O MOUSE */
+
+.cf-v2-menu-item:hover .cf-v2-menu-icone {
+  filter: brightness(1.25);
+}
+
+/* MELHOR CONTRASTE DO MENU */
+
+.cf-v2-menu-item {
+  color: #c1d3e7;
+}
+
+.cf-v2-menu-item:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.075);
+}
+
+.cf-v2-menu-item.ativo {
+  background:
+    linear-gradient(
+      100deg,
+      rgba(53, 184, 255, 0.24),
+      rgba(146, 117, 255, 0.20)
+    );
+}
