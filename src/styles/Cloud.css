@@ -2357,3 +2357,138 @@ color:#8fa7c7;
 font-size:13px;
 
 }
+/* =========================================================
+   CONECTAFÁCIL CLOUD — AZUL PETRÓLEO PROFISSIONAL
+   Ajuste visual sem alterar funcionalidades
+========================================================= */
+
+:root {
+  --bg: #102039;
+  --bg2: #142943;
+  --bg3: #1a3552;
+  --glass: rgba(28, 49, 75, 0.88);
+  --glass-light: rgba(255, 255, 255, 0.075);
+  --border: rgba(183, 211, 239, 0.14);
+  --shadow: 0 18px 48px rgba(3, 12, 25, 0.28);
+}
+
+html,
+body {
+  background-color: #102039;
+}
+
+body {
+  background:
+    radial-gradient(circle at 10% 5%, rgba(41, 169, 255, 0.17), transparent 34%),
+    radial-gradient(circle at 90% 15%, rgba(124, 92, 255, 0.14), transparent 32%),
+    linear-gradient(145deg, #142943 0%, #102039 52%, #0c192b 100%);
+  color: #e7f0fa;
+}
+
+.cloud-app {
+  background:
+    radial-gradient(circle at 80% 10%, rgba(41, 169, 255, 0.13), transparent 30%),
+    linear-gradient(145deg, #142943 0%, #102039 58%, #0e1c30 100%);
+}
+
+/* MENU LATERAL */
+
+.cloud-app > aside,
+.cloud-sidebar {
+  background: linear-gradient(180deg, #17324e 0%, #122943 100%);
+  border-right: 1px solid rgba(183, 211, 239, 0.13);
+}
+
+.cloud-menu-item {
+  color: #c1d2e3;
+}
+
+.cloud-menu-item:hover {
+  background: linear-gradient(90deg, rgba(41, 169, 255, 0.2), rgba(124, 92, 255, 0.13));
+}
+
+.cloud-menu-item-ativo {
+  background: linear-gradient(90deg, rgba(41, 169, 255, 0.3), rgba(124, 92, 255, 0.2));
+}
+
+/* CONTEÚDO E CABEÇALHO */
+
+.cloud-conteudo {
+  background: transparent;
+}
+
+.cloud-topbar {
+  background: rgba(20, 41, 65, 0.94);
+  border-bottom-color: rgba(145, 190, 231, 0.17);
+}
+
+.cloud-topbar-card,
+.cloud-sidebar-identificacao {
+  background: rgba(255, 255, 255, 0.065);
+  border-color: rgba(183, 211, 239, 0.14);
+}
+
+/* PÁGINAS */
+
+.cloud-pagina {
+  background: linear-gradient(145deg, rgba(31, 57, 84, 0.94), rgba(21, 42, 65, 0.96));
+  border-color: rgba(145, 190, 231, 0.18);
+}
+
+/* CARDS E PAINÉIS */
+
+.card-dashboard,
+.dashboard-painel,
+.clientes-painel {
+  background: linear-gradient(145deg, #1b3856 0%, #162e49 100%);
+  border-color: rgba(145, 190, 231, 0.17);
+}
+
+.dashboard-resumo-card,
+.neo-card {
+  background:
+    radial-gradient(circle at 15% 10%, rgba(41, 169, 255, 0.17), transparent 35%),
+    radial-gradient(circle at 90% 90%, rgba(124, 92, 255, 0.12), transparent 40%),
+    linear-gradient(145deg, #1c3855 0%, #142b45 100%);
+  border-color: rgba(183, 211, 239, 0.15);
+}
+
+.dashboard-saudacao,
+.clientes-cabecalho {
+  background:
+    radial-gradient(circle at 85% 25%, rgba(41, 169, 255, 0.22), transparent 36%),
+    linear-gradient(135deg, #21496b 0%, #183653 58%, #172d49 100%);
+  border-color: rgba(145, 190, 231, 0.2);
+}
+
+/* CLIENTES */
+
+.clientes-resumo-card {
+  background: #1b3855;
+  border-color: rgba(183, 211, 239, 0.13);
+}
+
+.clientes-resumo-icone {
+  background: #285078;
+}
+
+.clientes-busca,
+.topbar-busca {
+  background: #142b44;
+  border-color: rgba(183, 211, 239, 0.16);
+}
+
+.clientes-plano,
+.clientes-acoes {
+  background: #254665;
+}
+
+/* TEXTOS */
+
+.cloud-topbar h1,
+.cloud-pagina h1,
+.dashboard-saudacao h1,
+.dashboard-painel-topo h2,
+.clientes-cabecalho h1 {
+  color: #f7fbff;
+}
