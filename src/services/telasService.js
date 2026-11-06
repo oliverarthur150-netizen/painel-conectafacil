@@ -1,47 +1,32 @@
-import { supabase } from "./supabase"
-import { telasData } from "../data/telas"
 
-const TEMPO_SIMULADO_API = 350
+import { supabase } from "./supabase";
 
-function copiarDados(dados) {
-  return JSON.parse(JSON.stringify(dados))
-}
+function converterTela(tela) {
+  if (!tela) return null;
 
-function aguardar(tempo = TEMPO_SIMULADO_API) {
-  return new Promise((resolve) => {
-    window.setTimeout(resolve, tempo)
-  })
-}
-
-export async function buscarTelas() {
-  const { data, error } = await supabase
-    .from("telas")
-    .select("id,codigo,nome,local")
-
-  if (error) {
-    throw new Error(
-      `Erro ao carregar telas: ${error.message}`
-    )
-  }
-
-  return (data || []).map((tela) => ({
+  return {
     id: tela.id,
     codigo: tela.codigo,
     nome: tela.nome || tela.codigo,
-    local: tela.local || "",
-    cidade: "",
-    estado: "",
     cliente: "ConectaFácil",
     grupo: "Lanchas",
+    tipoLocal: "Embarcação",
+    local: tela.local || "",
+    cidade: "Lucena",
+    estado: "PB",
+
     status: "online",
     internetStatus: "estavel",
     sincronizacao: "sincronizada",
+
     resolucao: "Full HD",
     orientacao: "Horizontal",
     tamanhoTela: "43 polegadas",
+
     ip: "--",
     mac: "--",
     versao: "ConectaPlayer",
+
     cpu: null,
     memoria: null,
     armazenamento: null,
@@ -62,85 +47,94 @@ export async function buscarTelas() {
       ultimaAtualizacao: "--",
     },
 
-    ultimoContato: "Agora",
+    ultimoContato: "--",
     ultimaAtualizacao: "--",
     proximaSincronizacao: "--",
     observacoes: "",
-  }))
+  };
+}
+
+export async function buscarTelas() {
+  const { data, error } = await supabase
+    .from("telas")
+    .select("id,codigo,nome,local")
+    .order("nome", { ascending: true });
+
+  if (error) {
+    throw new Error(
+      `Erro ao carregar telas: ${error.message}`
+    );
+  }
+
+  return (data || []).map(converterTela);
 }
 
 export async function buscarTelaPorId(telaId) {
-  await aguardar(200)
-
-  const tela = telasData.find(
-    (item) => item.id === telaId
-  )
-
-  if (!tela) {
-    throw new Error("Tela não encontrada.")
+  if (!telaId) {
+    throw new Error("Identificador da tela não informado.");
   }
 
-  return copiarDados(tela)
-}
+  const { data, error } = await supabase
+    .from("telas")
+    .select("id,codigo,nome,local")
+    .eq("id", telaId)
+    .maybeSingle();
 
-export async function solicitarAtualizacaoTela(
-  telaId
-) {
-  await aguardar(700)
-
-  const tela = telasData.find(
-    (item) => item.id === telaId
-  )
-
-  if (!tela) {
-    throw new Error("Tela não encontrada.")
+  if (error) {
+    throw new Error(
+      `Erro ao buscar detalhes da tela: ${error.message}`
+    );
   }
 
-  return {
-    sucesso: true,
-    mensagem: `Atualização enviada para ${tela.nome}.`,
-  }
-}
-
-export async function solicitarReinicioTela(
-  telaId
-) {
-  await aguardar(900)
-
-  const tela = telasData.find(
-    (item) => item.id === telaId
-  )
-
-  if (!tela) {
-    throw new Error("Tela não encontrada.")
+  if (!data) {
+    throw new Error(
+      "Tela não encontrada no cadastro do Supabase."
+    );
   }
 
-  return {
-    sucesso: true,
-    mensagem: `Comando de reinício enviado para ${tela.nome}.`,
-  }
+  return converterTela(data);
 }
 
 export async function atualizarNomeTela(
   telaId,
   novoNome
 ) {
+  const nome = novoNome?.trim();
+
+  if (!nome) {
+    throw new Error("Informe um nome válido para a tela.");
+  }
+
   const { data, error } = await supabase
     .from("telas")
-    .update({
-      nome: novoNome,
-    })
+    .update({ nome })
     .eq("id", telaId)
-    .select()
-    .single()
+    .select("id,codigo,nome,local")
+    .single();
 
   if (error) {
     throw new Error(
       `Erro ao atualizar nome da tela: ${error.message}`
-    )
+    );
   }
 
-  return data
+  return converterTela(data);
+}
+
+export async function solicitarAtualizacaoTela(telaId) {
+  const tela = await buscarTelaPorId(telaId);
+
+  throw new Error(
+    `A TV ${tela.nome} foi localizada, mas o envio real de atualização ainda precisa ser conectado ao ConectaPlayer.`
+  );
+}
+
+export async function solicitarReinicioTela(telaId) {
+  const tela = await buscarTelaPorId(telaId);
+
+  throw new Error(
+    `A TV ${tela.nome} foi localizada, mas o comando real de reinício ainda precisa ser conectado ao ConectaPlayer.`
+  );
 }
 
 export async function cadastrarTela({
@@ -150,21 +144,19 @@ export async function cadastrarTela({
 }) {
   const { data, error } = await supabase
     .from("telas")
-    .insert([
-      {
-        codigo,
-        nome,
-        local,
-      },
-    ])
-    .select()
-    .single()
+    .insert({
+      codigo,
+      nome,
+      local,
+    })
+    .select("id,codigo,nome,local")
+    .single();
 
   if (error) {
     throw new Error(
       `Erro ao cadastrar tela: ${error.message}`
-    )
+    );
   }
 
-  return data
+  return converterTela(data);
 }
